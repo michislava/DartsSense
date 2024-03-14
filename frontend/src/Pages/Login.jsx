@@ -4,7 +4,7 @@ import axios from "axios"
 import { MyContext } from '../App.js';
 
 function LoginForm() {
-  const { isLoggedIn, setIsLoggedIn} = MyContext();
+  const context = useContext(MyContext);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -13,7 +13,11 @@ function LoginForm() {
     e.preventDefault();
     console.log('Username:', username);
     console.log('Password:', password);
-    setIsLoggedIn(!isLoggedIn)
+    context.setIsLoggedIn(true)
+
+    return (
+      <h1>Main trust</h1>
+    );
     }
 
   return (
