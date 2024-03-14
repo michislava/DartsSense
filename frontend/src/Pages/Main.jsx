@@ -1,8 +1,10 @@
 import React from 'react';
-import { link } from 'react-router-dom'
+import './Style.css';
 
-function Scores() {
-    return <h2>Scores Page</h2>;
+function Main() {
+    return <div className="main">
+            <h1>Main Page</h1>
+            </div>;
   }
   
-export default Scores;
+export default Main;
