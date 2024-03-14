@@ -12,3 +12,35 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  user_id           Int      @id @default(autoincrement())
+  username          String
+  email             String   @unique
+  password          String
+  registration_date DateTime @default(now())
+  skill_level       Int?
+  GameResult        GameResult[]
+
+}
+
+// games model
+model Game {
+  game_id        Int      @id @default(autoincrement())
+  game_date      DateTime @default(now())
+  game_type      String
+  game_location  String?
+  // Add the relationship to GameResult model
+  GameResult     GameResult[]
+}
+
+// game_results model
+model GameResult {
+  result_id   Int     @id @default(autoincrement())
+  game_id     Int
+  user_id     Int
+  score       Int
+  // Add the opposite relation field to Game model
+  Game        Game    @relation(fields: [game_id], references: [game_id])
+  User        User    @relation(fields: [user_id], references: [user_id])
+}
