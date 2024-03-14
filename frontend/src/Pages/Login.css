@@ -1,0 +1,20 @@
+input[type="text"],
+input[type="password"],
+button {
+  background-color: #979dac; /* Change background color of input fields and button */
+  border: 1px solid #ccc; /* Add border for input fields and button */
+  padding: 10px; /* Add padding for input fields and button */
+  margin-bottom: 10px;
+  border-radius: 10px; /* Add margin bottom for input fields */
+}
+
+button {
+  background-color: #007bff; /* Change background color of the button */
+  color: #ffffff; /* Change text color of the button */
+  cursor: pointer;
+  justify-content: center; /* Change cursor style to pointer */
+}
+
+button:hover {
+  background-color: #0056b3; /* Change background color of the button on hover */
+}
