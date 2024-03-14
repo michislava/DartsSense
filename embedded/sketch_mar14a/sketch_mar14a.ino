@@ -1,8 +1,20 @@
 #include <WiFi.h>
+#include <IRremote.h>
 
 const char* ssid = "InnovationForumGuests";
 const char* password = "";
 
+IRrecv IR(19);
+
+//IR CODES TABLE
+#define IR1 0xF30CFF00
+#define IR2 0xE718FF00
+#define IR3 0xA15EFF00
+#define IR4 0xF708FF00
+#define IR5 0xE31CFF00
+#define IR6 0xE31CFF00
+
+//ZONE PINS
 int zone1 = 14;
 int zone2 = 13;
 int zone3 = 12;
@@ -16,10 +28,13 @@ int zone8 = 8;
 int playerTurn = 1;
 int p1pts = 0;
 int p2pts = 0;
+int p3pts = 0;
+int p4pts = 0;
 
 int hit = 0;
 int pointsToEarn = 0;
 
+//POINTS TABLE
 #define ZONE1_PTS 20
 #define ZONE2_PTS 50
 #define ZONE3_PTS 10
@@ -32,6 +47,7 @@ int pointsToEarn = 0;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+  IR.enableIRIn();  
   delay(1000);
 
   WiFi.mode(WIFI_STA); //Optional
@@ -61,6 +77,38 @@ void loop() {
   // put your main code here, to run repeatedly:
 
   hit = 0;
+
+  if (IR.decode())
+  {
+    Serial.println(IR.decodedIRData.decodedRawData, HEX);
+    /*
+    if(IR.decodedIRData.decodedRawData == IR1)
+    {
+      Serial.println("cenk");
+    }
+    */
+    switch(IR.decodedIRData.decodedRawData)
+    {
+      case IR1:
+        Serial.println("Player1 Selected");
+        playerTurn = 1;
+      break;
+      case IR2:
+        Serial.println("Player2 Selected");
+        playerTurn = 2;
+      break;
+      case IR3:
+        Serial.println("Player3 Selected");
+        playerTurn = 3;
+      break;
+      case IR4:
+        Serial.println("Player4 Selected");
+        playerTurn = 4;
+      break;
+    }
+    delay(1500);
+    IR.resume();
+  }
 
   if (analogRead(zone1) >= 2000)
   {
@@ -131,16 +179,28 @@ void loop() {
         p2pts += pointsToEarn;
       break;
 
+      case 3:
+        p3pts += pointsToEarn;
+      break;
+
+      case 4:
+        p4pts += pointsToEarn;
+      break;
+
       default:
       break;
     }
     
     hit = 0;
 
-    Serial.println("P1 Points: %d");
+    Serial.println("P1 Points:");
     Serial.println(p1pts);
-    Serial.println("P2 Points: %d");
+    Serial.println("P2 Points:");
     Serial.println(p2pts);
+    Serial.println("P3 Points:");
+    Serial.println(p3pts);
+    Serial.println("P4 Points:");
+    Serial.println(p4pts);
     delay(1000);
   }
 
