@@ -18,11 +18,10 @@ function App() {
             <li><Link to="/help">Help</Link></li>
         </nav>
         <Routes>
-        <Route path="/" component={LoginForm} />
-        
-        <Route path="/scores" component={Scores} />
-        <Route path="/stats" component={Stats} />
-        <Route path="/help" component={Help} />
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/scores" element={<Scores />}/>
+        <Route path="/stats" element={<Stats />} />
+        <Route path="/help" element={<Help />} />
         </Routes>
       </div>
     </Router>

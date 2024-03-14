@@ -1,5 +1,12 @@
 function Stats() {
-    return <h2>Stats Page</h2>;
-  }
+    <nav>
+        <h1 className="h1">Hello</h1>
+        <ul>
+            <link to={"./Dashboard"}>
+                <li>Dashboard</li>
+            </link>
+        </ul>
+    </nav>
+}
   
 export default Stats;
