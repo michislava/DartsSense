@@ -8,7 +8,7 @@ const Data = () => {
         const data = JSON.parse(event.data);
         // Check if the received message matches the expected format
         if (data && typeof data === 'object' && 'player' in data && 'zone' in data) {
-          axios.post('backend/esp-data', data)
+          axios.post('/esp-data', data)
             .then(() => {
               console.log('Data received and saved successfully');
             })
