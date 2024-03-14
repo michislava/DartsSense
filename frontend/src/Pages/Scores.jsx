@@ -1,8 +1,10 @@
 import React from 'react';
-import { link } from 'react-router-dom'
+import './Style.css';
 
 function Scores() {
-    return <h2>Scores Page</h2>;
+    return <div className="scores">
+            <h1>Scores</h1>
+            </div>;
   }
   
 export default Scores;

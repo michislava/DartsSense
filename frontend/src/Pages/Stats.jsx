@@ -1,12 +1,10 @@
+import React from 'react';
+import './Style.css';
+
 function Stats() {
-    <nav>
-        <h1 className="h1">Hello</h1>
-        <ul>
-            <link to={"./Dashboard"}>
-                <li>Dashboard</li>
-            </link>
-        </ul>
-    </nav>
-}
+    return <div className="stats">
+            <h1>Stats</h1>
+            </div>;
+  }
   
 export default Stats;

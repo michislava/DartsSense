@@ -1,5 +1,10 @@
+import React from 'react';
+import './Style.css';
+
 function Help() {
-    return <h2>Help Page</h2>;
+    return <div className="help">
+            <h1>Help</h1>
+            </div>;
   }
   
 export default Help;
