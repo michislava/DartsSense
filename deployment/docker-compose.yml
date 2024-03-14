@@ -4,6 +4,9 @@ services:
     image: emiliyata/dart-sense-backend:latest
     ports:
       - "9000:9000"
+    networks:
+      - darts_network
+
   frontend:
     image: emiliyata/dart-sense-frontend:latest
     depends_on:
@@ -12,6 +15,9 @@ services:
       - "80:80"
     expose:
       - '80'
+    networks:
+      - darts_network
+
   db:
     image: mysql:8.3.0
     restart: always
@@ -26,6 +32,12 @@ services:
       - '3306'
     volumes:
       - my-db:/var/lib/mysql
+    networks:
+      - darts_network
+
 volumes:
   my-db:
-  
+
+networks:
+  darts_network:
+    driver: bridge
