@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import './Registration.css';
-import axios from "axios"
 import {MyContext} from '../App.js';
 
 function LoginForm() {
