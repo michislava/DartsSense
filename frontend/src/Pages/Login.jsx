@@ -4,6 +4,7 @@ import './Login.css';
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [skill, setSkill] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +15,7 @@ function LoginForm() {
 
   return (
     <div className="login">
-      <h2>Login</h2>
+      <h2>Registration</h2>
       <form onSubmit={handleSubmit}>
         <div className="username">
           <label>Username: </label>
@@ -32,8 +33,16 @@ function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <div className="skillLevel">
+          <label>Skill level: </label>
+          <input
+            type="text"
+            value={skill}
+            onChange={(e) => setSkill(e.target.value)}
+          />
+        </div>
         <div className="button">
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
         </div>
       </form>
     </div>
