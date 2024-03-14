@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client';
-
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); 
+const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient({
   log: ['query', 'info', 'warn', 'error'],
@@ -10,36 +10,32 @@ const prisma = new PrismaClient({
 const app = express();
 const port = 9000;
 
+// Middleware to enable CORS
+app.use(cors());
+
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
+// Your routes
 app.post('/register', (req, res) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
       return res.status(400).json({ message: 'All fields are required' });
   }
 
-  if (users.find(user => user.email === email)) {
-      return res.status(400).json({ message: 'User with this email already exists' });
-  }
-
-  const newUser = { username, email, password };
-
-  users.push(newUser);
-  res.status(200).json({ message: 'User registered successfully', user: newUser });
+  // Your registration logic
 });
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  // Replace this with your actual login logic
+  // Your login logic
   if (username === 'example' && password === 'password') {
     res.status(200).send('Login successful');
   } else {
     res.status(401).send('Unauthorized');
   }
 });
-
 
 app.post('/esp-data', async (req, res) => {
   const { player, zone } = req.body;
