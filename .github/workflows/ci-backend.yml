@@ -69,8 +69,7 @@ jobs:
             context: ./backend/
             file: ./backend/Dockerfile
             push: true
-            tags: ${{ steps.meta.outputs.tags }}
-            labels: ${{ steps.meta.outputs.labels }}
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/dart-sense-backend:${{ steps.meta.outputs.tags }}
 
         - name: Run the image in a container
           uses: addnab/docker-run-action@v3
