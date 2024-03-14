@@ -23,10 +23,7 @@ function Navbar2() {
         <li className="nav-item">
           <Link to="/help" className="nav-link">Help</Link>
         </li>
-        <li className="nav-item">
-          <Link to="/registration" className="nav-link">Registration</Link>
-        </li>
-      </ul>
+        </ul>
     </nav>
   );
 }

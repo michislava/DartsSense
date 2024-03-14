@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import RegistrationForm from './Pages/Registration';
 import LoginForm from './Pages/Login';
 import Main from './Pages/Main';
@@ -10,16 +10,15 @@ import Navbar from './Functions/Navbar';
 import Navbar2 from './Functions/Navbar2';
 import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 
-export const MyContext = createContext();
+export const Cont = createContext();
+export const MyContext = () => useContext(Cont);
+
+export const Provider = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+};
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLinkClick = () => {
-    setIsLoggedIn(true);
-    console.log(isLoggedIn)
-  // Toggle the state from true to false or false to true
-  };
 
   if (isLoggedIn === false) { 
     return (

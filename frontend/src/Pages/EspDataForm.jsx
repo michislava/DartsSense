@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 
-const App = () => {
+const Data = () => {
   useEffect(() => {
     const handleMessage = (event) => {
       try {
@@ -39,4 +39,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Data;

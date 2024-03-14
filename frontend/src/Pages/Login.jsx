@@ -1,12 +1,10 @@
 import React, { useState, useContext } from 'react';
 import './Registration.css';
-import App from "../App.js"
 import axios from "axios"
 import { MyContext } from '../App.js';
 
-
 function LoginForm() {
-  const context = useContext(MyContext);
+  const { isLoggedIn, setIsLoggedIn} = MyContext();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -15,8 +13,8 @@ function LoginForm() {
     e.preventDefault();
     console.log('Username:', username);
     console.log('Password:', password);
-    context.setIsLoggedIn(!context.isLoggedIn)
-  };
+    setIsLoggedIn(!isLoggedIn)
+    }
 
   return (
     <div className="login">
