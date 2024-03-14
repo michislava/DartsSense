@@ -15,7 +15,6 @@ button {
   justify-content: center; /* Change cursor style to pointer */
 }
 
-
 button:hover {
   background-color: #0056b3; /* Change background color of the button on hover */
 }
