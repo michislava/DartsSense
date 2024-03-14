@@ -1,11 +1,20 @@
 #include <WiFi.h>
 #include <IRremote.h>
 #include <HTTPClient.h>
+#include <LiquidCrystal_I2C.h>
+#include <Wire.h>
 
-const char* ssid = "InnovationForumGuests";
-const char* password = "";
-const char* serverAddress = "https://httpbin.org/post";
+const char* ssid = "Tenda";
+const char* password = "0898760481";
+const char* serverAddress = "http://34.89.212.72:9000/esp-data";
 
+#define I2C_SDA 21
+#define I2C_SCL 20
+
+int lcdColumns = 16;
+int lcdRows = 2;
+
+LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);  
 
 IRrecv IR(19);
 
@@ -34,6 +43,12 @@ int p2pts = 0;
 int p3pts = 0;
 int p4pts = 0;
 
+//player throws
+int p1throws = 0;
+int p2throws = 0;
+int p3throws = 0;
+int p4throws = 0;
+
 int hit = 0;
 int pointsToEarn = 0;
 
@@ -50,6 +65,9 @@ int pointsToEarn = 0;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+  Wire.begin(I2C_SDA, I2C_SCL);
+  lcd.init();
+  lcd.backlight();
   IR.enableIRIn();  
   delay(1000);
 
@@ -76,6 +94,10 @@ void setup() {
   pinMode(zone8, INPUT);
 
   sendData();
+
+  lcd.setCursor(0, 0);
+  // print message
+  lcd.print("kak sa statane");
 }
 
 void loop() {
@@ -178,18 +200,22 @@ void loop() {
     {
       case 1:
         p1pts += pointsToEarn;
+        p1throws++;
       break;
 
       case 2:
         p2pts += pointsToEarn;
+        p2throws++;
       break;
 
       case 3:
         p3pts += pointsToEarn;
+        p3throws++;
       break;
 
       case 4:
         p4pts += pointsToEarn;
+        p4throws++;
       break;
 
       default:
@@ -197,7 +223,7 @@ void loop() {
     }
     
     hit = 0;
-
+    //player points display
     Serial.println("P1 Points:");
     Serial.println(p1pts);
     Serial.println("P2 Points:");
@@ -207,8 +233,42 @@ void loop() {
     Serial.println("P4 Points:");
     Serial.println(p4pts);
     delay(1000);
+
+    
   }
 
+  //player lcd display
+  switch(playerTurn)
+    {
+      case 1:
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Player 1: " + String(p1pts));
+        lcd.setCursor(0, 1);
+        lcd.print("Throws: " + String(p1throws));
+      break;
+      case 2:
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Player 2: " + String(p2pts));
+        lcd.setCursor(0, 1);
+        lcd.print("Throws: " + String(p2throws));
+      break;
+      case 3:
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Player 3: " + String(p3pts));
+        lcd.setCursor(0, 1);
+        lcd.print("Throws: " + String(p3throws));
+      break;
+      case 4:
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Player 4: " + String(p4pts));
+        lcd.setCursor(0, 1);
+        lcd.print("Throws: " + String(p4throws));
+      break;
+    }
   delay(100);
 }
 
