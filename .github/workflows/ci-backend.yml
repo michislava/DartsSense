@@ -2,8 +2,6 @@ name: ci-backend
 on:
   push:
     branches: [ main ]
-    paths:
-      - backend
   pull_request:
     branches: [ main ]
   workflow_dispatch:
