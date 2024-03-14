@@ -1,0 +1,31 @@
+version: '2'
+services:
+  backend:
+    image: emiliyata/dart-sense-backend:latest
+    ports:
+      - "9000:9000"
+  frontend:
+    image: emiliyata/dart-sense-frontend:latest
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    expose:
+      - '80'
+  db:
+    image: mysql:8.3.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'darts'
+      MYSQL_USER: 'a4papep'
+      MYSQL_PASSWORD: '1856'
+      MYSQL_ROOT_PASSWORD: 'dartssense'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-db:/var/lib/mysql
+volumes:
+  my-db:
+  

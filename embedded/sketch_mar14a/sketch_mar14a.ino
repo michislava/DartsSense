@@ -1,8 +1,11 @@
 #include <WiFi.h>
 #include <IRremote.h>
+#include <HTTPClient.h>
 
 const char* ssid = "InnovationForumGuests";
 const char* password = "";
+const char* serverAddress = "https://httpbin.org/post";
+
 
 IRrecv IR(19);
 
@@ -71,6 +74,8 @@ void setup() {
   pinMode(zone6, INPUT);
   pinMode(zone7, INPUT);
   pinMode(zone8, INPUT);
+
+  sendData();
 }
 
 void loop() {
@@ -205,4 +210,32 @@ void loop() {
   }
 
   delay(100);
+}
+
+void sendData() {
+  
+  HTTPClient http;
+  
+  if (WiFi.status() == WL_CONNECTED) // Check if WiFi is connected
+  {
+    http.begin(serverAddress); // Your Flask server endpoint
+    http.addHeader("Content-Type", "application/json"); // Specify content type
+    
+    String jsonData = "{\"cenk\" : 1}"; // Create JSON payload
+    int httpResponseCode = http.POST(jsonData); // Send the POST request
+    
+
+    if (httpResponseCode > 0) // Check for errors
+    {
+      Serial.print("HTTP Response code: ");
+      Serial.println(httpResponseCode);
+    } else {
+      Serial.print("HTTP Error: ");
+      Serial.println(httpResponseCode);
+    }
+
+    http.end();
+  } else {
+    Serial.println("WiFi not connected. Skipping HTTP request.");
+  }
 }
