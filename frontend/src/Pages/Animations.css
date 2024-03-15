@@ -49,27 +49,12 @@
         right: 70%;
         transform: rotate(-345deg) translateY(0);
       }
-      80% {
-        bottom: 30%;
-        right: 80%;
-        transform: rotate(-350deg) translateY(0);
-      }
-      90% {
-        bottom: 20%;
-        right: 90%;
-        transform: rotate(-360deg) translateY(0);
-      }
       100% {
-        bottom: 10%;
-        right: 95%;
-        transform: rotate(-370deg) translateY(0);
+        bottom: 40%; /* Stay at the same position */
+        right: 70%;
+        transform: rotate(-345deg) translateY(0);
       }
-  }
 
-  .container {
-    position: relative;
-    width: 60px; /* Adjust width and height as needed */
-    height: 40px;
   }
   
   .flying-dart {
@@ -78,25 +63,16 @@
     height: 40px;
     background-image: url('../Assets/dart-illustration.png'); /* Use custom image */
     background-size: cover;
-    animation: fly 2s linear infinite;
+    animation: fly 2s linear forwards;
   }
 
   .Board {
-    width: 200px; /* Adjust width and height as needed */
-    height: 200px;
+    width: 450px; /* Adjust width and height as needed */
+    height: 450px;
     position: absolute;
-    left: 5%;
-    bottom: 50%;
+    z-index: -1;
   }
 
   .darts1 {
     animation-delay: 0s;
-  }
-  
-  .darts2 {
-    animation-delay: 0.2s;
-  }
-  
-  .darts3 {
-    animation-delay: 0.4s;
   }

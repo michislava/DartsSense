@@ -1,82 +1,82 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 20px;
-    background-color: #FFD700;
-    color: #F2E8CF;
-  }
-  
-  .navbar-logo-main {
-    font-size: 20px;
-    position: relative;
-  }
-  
-  .navbar-logo-link {
-    color: #000000;
-    text-decoration: none;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  background-color: #FFD700;
+  color: #F2E8CF;
+}
 
-  .navbar-logo-mainicon {
-    width: 22px;
-    height: 17px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
+.navbar-logo-main {
+  font-size: 20px;
+  position: relative;
+}
 
-  .navbar-logo-icon {
-    position: relative;
-  }
-  
-  .navbar-logo-iconlink {
-    width: 22px;
-    height: 17px;
-    cursor: pointer;
-  }
-  
-  .navbar-nav {
-    display: flex;
-    list-style-type: none;
-    margin-left: auto;
-  }
-  
-  .nav-item {
-    margin-right: 20px;
-  }
-  
-  .nav-link {
-    color: #000000;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  
-  .nav-link:hover {
-    color: #a8001c;
-  }
-  
-  .nameIcon {
-    width: auto; /* Allow the width to adjust based on the image's aspect ratio */
-    max-height: 30px; /* Set a fixed height for consistency */
-    cursor: pointer;
-  }
-  
-  .tooltip {
-    visibility: hidden;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 0;
-    bottom: -50px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  
-  .navbar-logo-icon:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
-  }
+.navbar-logo-link {
+  color: #000000;
+  text-decoration: none;
+}
+
+.navbar-logo-mainicon {
+  width: 22px;
+  height: 17px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.navbar-logo-icon {
+  position: relative;
+}
+
+.navbar-logo-iconlink {
+  width: 22px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.navbar-nav {
+  display: flex;
+  list-style-type: none;
+  margin-left: auto;
+}
+
+.nav-item {
+  margin-right: 20px;
+}
+
+.nav-link {
+  color: #000000;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #a8001c;
+}
+
+.nameIcon {
+  width: auto; /* Allow the width to adjust based on the image's aspect ratio */
+  max-height: 30px; /* Set a fixed height for consistency */
+  cursor: pointer;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 0;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.navbar-logo-icon:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
