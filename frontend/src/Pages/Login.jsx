@@ -1,17 +1,27 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import './Registration.css';
-import {MyContext} from '../App.js';
 import axios from 'axios';
 
 function LoginForm() {
-  const context = useContext(MyContext);
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
-  context.setIsLoggedIn(true)
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_ADDRESS}/login`, {
+        username,
+        password
+      });
+      
+      console.log('Login successful:', response.data);
+      // Handle successful login (e.g., redirect to dashboard)
+    } catch (error) {
+      console.error('Error logging in:', error);
+      // Handle login error (e.g., display error message)
+    }
+  };
 
   return (
     <div className="login">
@@ -34,7 +44,7 @@ function LoginForm() {
           />
         </div>
         <div className="button">
-        <button type="submit">Login</button>
+          <button type="submit">Login</button>
         </div>
       </form>
     </div>

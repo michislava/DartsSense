@@ -16,10 +16,28 @@ app.use(cors());
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-app.post('/register', (req, res) => {
-  const { username, email, password } = req.body;
-  if (!username || !email || !password) {
-      return res.status(400).json({ message: 'All fields are required' });
+app.post('/register', async (req, res) => {
+  const { username, password, skill } = req.body;
+
+  if (!username || !password || !skill) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  try {
+    const newUser = await prisma.user.create({
+      data: {
+        username,
+        password,
+        skill,
+      },
+    });
+
+    console.log('User registered successfully:', newUser);
+
+    res.status(200).json({ message: 'User registered successfully', user: newUser });
+  } catch (error) {
+    console.error('Error registering user:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 

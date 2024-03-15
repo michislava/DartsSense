@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Registration.css';
 
 function RegistrationForm() {
@@ -6,10 +7,20 @@ function RegistrationForm() {
   const [password, setPassword] = useState('');
   const [skill, setSkill] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Username:', username);
-    console.log('Password:', password);
+    
+    try {
+      const response = await axios.post(`${process.env.BACKEND_ADDRESS}/register`, {
+        username,
+        password,
+        skill
+      });
+      
+      console.log('Registration successful:', response.data);
+    } catch (error) {
+      console.error('Error registering user:', error);
+    }
   };
 
   return (
@@ -41,7 +52,7 @@ function RegistrationForm() {
           />
         </div>
         <div className="button">
-        <button type="submit">Register</button>
+          <button type="submit">Register</button>
         </div>
       </form>
     </div>
