@@ -8,8 +8,6 @@ DartsSense ще автоматизира аспекти от играта на �
 ## HackTUES X: Hack Your Hobby
 ![image](images/theme-image.png)
 
-da se sloji logo
-
 ## Съдържание
 
 1. [Функции](#функции)
