@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 20px;
-    background-color: #001845;
+    background-color: #FFD700;
     color: #F2E8CF;
   }
   
@@ -13,7 +13,7 @@
   }
   
   .navbar-logo-link {
-    color: #0466c8;
+    color: #000000;
     text-decoration: none;
   }
 
@@ -45,13 +45,13 @@
   }
   
   .nav-link {
-    color: #979dac;
+    color: #000000;
     text-decoration: none;
     transition: all 0.3s ease;
   }
   
   .nav-link:hover {
-    color: #0466c8;
+    color: #a8001c;
   }
   
   .nameIcon {

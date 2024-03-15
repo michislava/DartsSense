@@ -1,12 +1,12 @@
 # DartSense
 ## от "А4 само хартия"
 
+![image](images/poster.png)
+
 DartsSense ще автоматизира аспекти от играта на дартс, предоставяйки на играчите в реално време информация за тяхната точност и техника. Така ще бъдат подобрени тренировките и играчите ще могат да развият по-добри умения в играта.
 
 ## HackTUES X: Hack Your Hobby
 ![image](images/theme-image.png)
-
-da se sloji logo
 
 ## Съдържание
 
@@ -29,6 +29,8 @@ da se sloji logo
 - **ESP32**
 - **C/C++**
 - **KiCAD**
+- **Reverse Engineering**
+- **jsda**
 
 ## Блокови схеми
 
