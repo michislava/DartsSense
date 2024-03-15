@@ -4,9 +4,9 @@
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 
-const char* ssid = "Tenda";
-const char* password = "0898760481";
-const char* serverAddress = "http://34.89.212.72:9000/esp-data";
+const char* ssid = "";
+const char* password = "";
+const char* serverAddress = "";
 
 #define I2C_SDA 21
 #define I2C_SCL 20
@@ -281,7 +281,7 @@ void sendData() {
     http.begin(serverAddress); // Your Flask server endpoint
     http.addHeader("Content-Type", "application/json"); // Specify content type
     
-    String jsonData = "{\"cenk\" : 1}"; // Create JSON payload
+    String jsonData = "{\'player\' : 1; \'zone\' : 1}"; // Create JSON payload
     int httpResponseCode = http.POST(jsonData); // Send the POST request
     
 
