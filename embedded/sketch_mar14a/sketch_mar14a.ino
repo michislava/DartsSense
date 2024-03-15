@@ -4,10 +4,11 @@
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 
-const char* ssid = "";
+const char* ssid = "InnovationForumGuests";
 const char* password = "";
 const char* serverAddress = "";
 
+//i2c pins used to control lcd display
 #define I2C_SDA 21
 #define I2C_SCL 20
 
@@ -16,9 +17,11 @@ int lcdRows = 2;
 
 LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);  
 
+//ir object bound to gpio19
 IRrecv IR(19);
 
 //IR CODES TABLE
+#define IR0 0xFFFFFFFF
 #define IR1 0xF30CFF00
 #define IR2 0xE718FF00
 #define IR3 0xA15EFF00
