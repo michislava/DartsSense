@@ -36,7 +36,7 @@ da se sloji logo
 
 ## А4 само хартия
 
-- Викторио Миланов (12Г)
-- Емилия Чукалева (12Г)
-- Любомир Станев (12Г)
-- Николай Йорданов (12Г)
+- [Викторио Миланов (12Г)](https://github.com/milanovviktorio)
+- [Емилия Чукалева (12Г)](https://github.com/michislava)
+- [Любомир Станев (12Г)](https://github.com/liubo817)
+- [Николай Йорданов (12Г)](https://github.com/i-kratko)
