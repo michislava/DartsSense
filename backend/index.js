@@ -14,7 +14,7 @@ const port = 9000;
 app.use(cors());
 
 // Middleware to parse JSON bodies
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.post('/register', (req, res) => {
   const { username, email, password } = req.body;
@@ -33,17 +33,19 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/esp-data', async (req, res) => {
+  console.log(req.body);
+  console.log(req);
   try {
-    const { player, points } = JSON.parse(req.body);
-    if (player === undefined || points === undefined) {
-      return res.status(400).send('Player and points are required');
+      const { player, points } = JSON.parse(req.body);
+      if (player === undefined || points === undefined) {
+        return res.status(400).send('Player and points are required');
+      }
+      console.log(`Player: ${player}, Points: ${points}`);
+      res.status(200).send('Data received and processed successfully');
+    } catch (error) {
+      console.error('Error parsing JSON:', error);
+      res.status(400).send('Invalid JSON data');
     }
-    console.log(`Player: ${player}, Points: ${points}`);
-    res.status(200).send('Data received and processed successfully');
-  } catch (error) {
-    console.error('Error parsing JSON:', error);
-    res.status(400).send('Invalid JSON data');
-  }
 });
 
 // Start the server
