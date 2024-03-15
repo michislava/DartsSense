@@ -1,7 +1,7 @@
 version: '2'
 services:
   backend:
-    image: emiliyata/dart-sense-backend:latest
+    image: emiliyata/dart-sense-backend:v9
     ports:
       - "9000:9000"
     networks:
