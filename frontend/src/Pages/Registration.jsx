@@ -5,7 +5,8 @@ import './Registration.css';
 function RegistrationForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [skill, setSkill] = useState('');
+  const [email, setEmail] = useState('');
+  const [skill_level, setSkill] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,8 +14,9 @@ function RegistrationForm() {
     try {
       const response = await axios.post(`/register`, {
         username,
+        email,
         password,
-        skill
+        skill_level
       });
       
       console.log('Registration successful:', response.data);
@@ -35,6 +37,14 @@ function RegistrationForm() {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
+        <div className="email">
+          <label>Email: </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
         <div className="pass">
           <label>Password: </label>
           <input
@@ -47,8 +57,8 @@ function RegistrationForm() {
           <label>Skill level: </label>
           <input
             type="text"
-            value={skill}
-            onChange={(e) => setSkill(e.target.value)}
+            value={skill_level}
+            onChange={(e) => setSkill(parseInt(e.target.value))}
           />
         </div>
         <div className="button">

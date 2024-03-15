@@ -19,9 +19,9 @@ app.use(cors({
 app.use(express.json());
 
 app.post('/register', async (req, res) => {
-  const { username, password, skill } = req.body;
+  const { username, password, email, skill_level } = req.body;
 
-  if (!username || !password || !skill) {
+  if (!username || !password || !email || !skill_level) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
@@ -30,7 +30,8 @@ app.post('/register', async (req, res) => {
       data: {
         username,
         password,
-        skill,
+        email,
+        skill_level,
       },
     });
 
@@ -39,6 +40,16 @@ app.post('/register', async (req, res) => {
     res.status(200).json({ message: 'User registered successfully', user: newUser });
   } catch (error) {
     console.error('Error registering user:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.get('/users', async (req, res) => {
+  try {
+    const allUsers = await prisma.user.findMany();
+    res.status(200).json(allUsers);
+  } catch (error) {
+    console.error('Error fetching users:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
