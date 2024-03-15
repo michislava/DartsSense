@@ -29,9 +29,7 @@ model User {
 model Game {
   game_id        Int      @id @default(autoincrement())
   game_date      DateTime @default(now())
-  game_type      String
-  game_location  String?
-  // Add the relationship to GameResult model
+  game_type      String   // New field added
   GameResult     GameResult[]
 }
 

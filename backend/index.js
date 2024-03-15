@@ -64,8 +64,6 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/esp-data', async (req, res) => {
-  console.log(req.body);
-  console.log(req);
   try {
       const { player, points } = req.body;
       if (player === undefined || points === undefined) {
@@ -73,11 +71,57 @@ app.post('/esp-data', async (req, res) => {
       }
       console.log(`Player: ${player}, Points: ${points}`);
       res.status(200).send('Data received and processed successfully');
-    } catch (error) {
+    } catch (error) { 
       console.error('Error parsing JSON:', error);
       res.status(400).send('Invalid JSON data');
     }
+    createFinishedGame();
 });
+
+async function createFinishedGame() {
+  console.log("vleznahme");
+  try {
+      const newGame = await prisma.game.create({
+      data: {
+        game_type: 'Finished',
+      },
+    });
+
+    console.log("tvato stana");
+
+    // Define the player scores and the threshold for winning
+    const playerScores = [0, 0, 0, 0];
+    const winningScore = 301;
+
+    for (let i = 0; i < 3; i++) {
+      for (let player = 0; player < 4; player++) {
+        // Generate a random score for each throw between 3 and 50
+        const throwScore = Math.floor(Math.random() * (50 - 3 + 1)) + 3; // Random score between 3 and 50
+        playerScores[player] += throwScore;
+
+        // Create game result entry for each throw
+        await prisma.gameResult.create({
+          data: {
+            game_id: newGame.game_id,
+            user_id: player + 1, // Assuming user IDs start from 1
+            score: throwScore,
+          },
+        });
+        console.log("ima li ciganiiiiiiiiiiiii");
+        // Check if any player has reached the winning score
+        if (playerScores[player] >= winningScore) {
+          console.log(`Player ${player + 1} wins!`);
+          return;
+        }
+      }
+    }
+
+    console.log('No winner yet!');
+  } catch (error) {
+    console.error('Error creating finished game:', error);
+  }
+}
+
 
 // Start the server
 app.listen(port, () => {

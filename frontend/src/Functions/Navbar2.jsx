@@ -20,10 +20,10 @@ function Navbar2() {
           <Link to="/scores" className="nav-link">Scores</Link>
         </li>
         <li className="nav-item">
-          <Link to="/stats" className="nav-link">Stats</Link>
+          <Link to="/leaderboard" className="nav-link">Leaderboard</Link>
         </li>
         <li className="nav-item">
-          <Link to="/help" className="nav-link">Help</Link>
+          <Link to="/rules" className="nav-link">Rules</Link>
         </li>
         <div className="navbar-logo-icon">
           <Link to="/player" className="navbar-logo-link">
