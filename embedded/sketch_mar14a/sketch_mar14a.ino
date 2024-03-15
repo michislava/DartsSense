@@ -6,7 +6,7 @@
 
 const char* ssid = "InnovationForumGuests";
 const char* password = "";
-const char* serverAddress = "";
+const char* serverAddress = "http://35.198.130.133:9000/esp-data";
 
 //i2c pins used to control lcd display
 #define I2C_SDA 21
@@ -21,7 +21,7 @@ LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);
 IRrecv IR(19);
 
 //IR CODES TABLE
-#define IR0 0xFFFFFFFF
+#define IR0 0xE916FF00
 #define IR1 0xF30CFF00
 #define IR2 0xE718FF00
 #define IR3 0xA15EFF00
@@ -96,7 +96,7 @@ void setup() {
   pinMode(zone7, INPUT);
   pinMode(zone8, INPUT);
 
-  sendData();
+  sendData(1, 301);
 
   lcd.setCursor(0, 0);
   // print message
@@ -275,7 +275,7 @@ void loop() {
   delay(100);
 }
 
-void sendData() {
+void sendData(int player, int points) {
   
   HTTPClient http;
   
@@ -284,8 +284,9 @@ void sendData() {
     http.begin(serverAddress); // Your Flask server endpoint
     http.addHeader("Content-Type", "application/json"); // Specify content type
     
-    String jsonData = "{\'player\' : 1; \'zone\' : 1}"; // Create JSON payload
-    int httpResponseCode = http.POST(jsonData); // Send the POST request
+    String jsonData = "{\"Player\" : " + String(player) + ", \"Points\" : " + String(points) + "}"; // Create JSON payload
+    Serial.println(jsonData);
+    int httpResponseCode = http.POST(jsonData); // Send the P;OST request
     
 
     if (httpResponseCode > 0) // Check for errors
