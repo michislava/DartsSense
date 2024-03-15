@@ -11,7 +11,7 @@ function RegistrationForm() {
     e.preventDefault();
     
     try {
-      const response = await axios.post(`${process.env.BACKEND_ADDRESS}/register`, {
+      const response = await axios.post(`/register`, {
         username,
         password,
         skill

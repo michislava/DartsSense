@@ -54,7 +54,7 @@ app.post('/esp-data', async (req, res) => {
   console.log(req.body);
   console.log(req);
   try {
-      const { player, points } = JSON.parse(req.body);
+      const { player, points } = req.body;
       if (player === undefined || points === undefined) {
         return res.status(400).send('Player and points are required');
       }
