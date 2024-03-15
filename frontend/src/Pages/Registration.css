@@ -9,7 +9,7 @@ button {
   border-radius: 10px; /* Add margin bottom for input fields */
 }
 
-Button {
+.button {
   background-color: #FFD700; /* Change background color of the button */
   color: #000000; /* Change text color of the button */
   cursor: pointer;

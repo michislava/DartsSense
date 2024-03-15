@@ -44,7 +44,7 @@ function LoginForm() {
           />
         </div>
         <div className="Button">
-          <button type="submit">Login</button>
+          <button className="button" type="submit">Login</button>
         </div>
       </form>
     </div>
