@@ -9,10 +9,12 @@ function LoginForm() {
   const [password, setPassword] = useState('');
 
   const handleSubmit = () => {
-    context.setIsLoggedIn(true)
+  context.setIsLoggedIn(true)
 
     return (
+      <div className="maintrust">
       <h1>Main trust</h1>
+      </div>
     );
     }
 
