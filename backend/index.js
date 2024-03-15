@@ -11,7 +11,9 @@ const app = express();
 const port = 9000;
 
 // Middleware to enable CORS
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 // Middleware to parse JSON bodies
 app.use(express.json());

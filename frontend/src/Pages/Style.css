@@ -1,23 +1,28 @@
 .main {
-    color: #d90429;
+    color: #FFD700;
 }
 
 .scores {
-    color: #d90429;
+    color: #FFD700;
 }
 
 .stats {
-    color: #d90429;
+    color: #FFD700;
 }
 
 .help {
-    color: #d90429;
+    color: #FFD700;
 }
 
 .registration {
-    color: #d90429;
+    color: #FFD700;
 }
 
 .login {
     color: #FFD700;
 }
+
+.player {
+    color: #FFD700;
+}
+

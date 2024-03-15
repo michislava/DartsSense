@@ -1,0 +1,32 @@
+@keyframes fly {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(-50px, -50px) rotate(180deg);
+    }
+    100% {
+      transform: translate(-100px, -100px) rotate(360deg);
+    }
+  }
+  
+  .flying-dart {
+    position: center;
+    width: 40px; /* Adjust width and height as needed */
+    height: 40px;
+    background-image: url('../Assets/dartsLogo1.png'); /* Use custom image */
+    background-size: cover;
+    animation: fly 2s linear infinite;
+  }
+  
+  .dart1 {
+    animation-delay: 0s;
+  }
+  
+  .dart2 {
+    animation-delay: 1s;
+  }
+  
+  .dart3 {
+    animation-delay: 2s;
+  }

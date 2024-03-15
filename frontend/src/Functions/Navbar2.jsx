@@ -26,8 +26,11 @@ function Navbar2() {
           <Link to="/help" className="nav-link">Help</Link>
         </li>
         <div className="navbar-logo-icon">
-          <img src={logo} alt="Info Icon" className="navbar-logo-iconlink"/>
-          <span className="tooltip">Login info</span>
+          <Link to="/player" className="navbar-logo-link">
+            <img src={logo} alt="Info Icon" className="navbar-logo-iconlink"/>
+          <span className="tooltip">Player info</span>
+          </Link>
+          
         </div>
       </ul>
     </nav>

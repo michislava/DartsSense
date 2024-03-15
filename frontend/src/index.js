@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://35.198.130.133/'
+axios.defaults.baseURL = 'http://35.198.130.133:9000'
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
