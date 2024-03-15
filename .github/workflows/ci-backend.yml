@@ -56,12 +56,12 @@ jobs:
             context: ./backend/
             file: ./backend/Dockerfile
             push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/dart-sense-backend:latest
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/dart-sense-backend:v1
 
         - name: Run the image in a container
           uses: addnab/docker-run-action@v3
           with:
-            image: ${{ secrets.DOCKERHUB_USERNAME }}/dart-sense-backend:latest
+            image: ${{ secrets.DOCKERHUB_USERNAME }}/dart-sense-backend:v1
             run: |
               echo "runing the docker image"
               echo "Testing the nodejs  app endpoints"
