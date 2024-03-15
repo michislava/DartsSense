@@ -10,7 +10,7 @@ function LoginForm() {
     e.preventDefault();
     
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_ADDRESS}/login`, {
+      const response = await axios.fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/login`, {
         username,
         password
       });
