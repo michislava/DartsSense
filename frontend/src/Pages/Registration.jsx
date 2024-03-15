@@ -27,7 +27,7 @@ function RegistrationForm() {
 
   return (
     <div className="registration">
-      <h2>Registration</h2>
+      <h1>Registration</h1>
       <form onSubmit={handleSubmit}>
         <div className="username">
           <label>Username: </label>
@@ -61,7 +61,7 @@ function RegistrationForm() {
             onChange={(e) => setSkill(parseInt(e.target.value))}
           />
         </div>
-        <div className="button">
+        <div className="Button">
           <button type="submit">Register</button>
         </div>
       </form>

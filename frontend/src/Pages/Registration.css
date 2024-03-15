@@ -1,4 +1,5 @@
 input[type="text"],
+input[type="email"],
 input[type="password"],
 button {
   background-color: #8d99ae; /* Change background color of input fields and button */
@@ -8,13 +9,13 @@ button {
   border-radius: 10px; /* Add margin bottom for input fields */
 }
 
-button {
+Button {
   background-color: #FFD700; /* Change background color of the button */
   color: #000000; /* Change text color of the button */
   cursor: pointer;
   justify-content: center; /* Change cursor style to pointer */
 }
 
-button:hover {
+Button:hover {
   background-color: #b29802; /* Change background color of the button on hover */
 }

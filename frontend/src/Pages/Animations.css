@@ -1,32 +1,78 @@
 @keyframes fly {
     0% {
-      transform: translate(0, 0) rotate(0deg);
-    }
-    50% {
-      transform: translate(-50px, -50px) rotate(180deg);
-    }
-    100% {
-      transform: translate(-100px, -100px) rotate(360deg);
-    }
+        bottom: 3%;
+        right: 1%;
+        transform: rotate(-300deg) translateY(0);
+      }
+      10% {
+        bottom: 10%;
+        right: 10%;
+        transform: rotate(-310deg) translateY(0);
+      }
+      20% {
+        bottom: 20%;
+        right: 20%;
+        transform: rotate(-320deg) translateY(0);
+      }
+      30% {
+        bottom: 30%;
+        right: 30%;
+        transform: rotate(-325deg) translateY(0);
+      }
+      40% {
+        bottom: 40%;
+        right: 40%;
+        transform: rotate(-330deg) translateY(0);
+      }
+      45% {
+        bottom: 45%;
+        right: 45%;
+        transform: rotate(-333deg) translateY(0);
+      }
+      50% {
+        bottom: 50%;
+        right: 50%;
+        transform: rotate(-335deg) translateY(0);
+      }
+      55% {
+        bottom: 48%;
+        right: 55%;
+        transform: rotate(-338deg) translateY(0);
+      }
+      60% {
+        bottom: 45%;
+        right: 60%;
+        transform: rotate(-340deg) translateY(0);
+      }
+      70% {
+        bottom: 40%;
+        right: 70%;
+        transform: rotate(-345deg) translateY(0);
+      }
+      100% {
+        bottom: 40%; /* Stay at the same position */
+        right: 70%;
+        transform: rotate(-345deg) translateY(0);
+      }
+
   }
   
   .flying-dart {
-    position: center;
-    width: 40px; /* Adjust width and height as needed */
+    position: absolute;
+    width: 60px; /* Adjust width and height as needed */
     height: 40px;
-    background-image: url('../Assets/dartsLogo1.png'); /* Use custom image */
+    background-image: url('../Assets/dart-illustration.png'); /* Use custom image */
     background-size: cover;
-    animation: fly 2s linear infinite;
+    animation: fly 2s linear forwards;
   }
-  
-  .dart1 {
+
+  .Board {
+    width: 450px; /* Adjust width and height as needed */
+    height: 450px;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .darts1 {
     animation-delay: 0s;
-  }
-  
-  .dart2 {
-    animation-delay: 1s;
-  }
-  
-  .dart3 {
-    animation-delay: 2s;
   }
