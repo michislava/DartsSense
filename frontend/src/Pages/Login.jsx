@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import './Registration.css';
 import {MyContext} from '../App.js';
+import axios from 'axios';
 
 function LoginForm() {
   const context = useContext(MyContext);
@@ -10,13 +11,7 @@ function LoginForm() {
 
   const handleSubmit = () => {
   context.setIsLoggedIn(true)
-
-    return (
-      <div className="maintrust">
-      <h1>Main trust</h1>
-      </div>
-    );
-    }
+  }
 
   return (
     <div className="login">
