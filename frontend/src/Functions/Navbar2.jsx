@@ -28,7 +28,7 @@ function Navbar2() {
         <div className="navbar-logo-icon">
           <Link to="/player" className="navbar-logo-link">
             <img src={logo} alt="Info Icon" className="navbar-logo-iconlink"/>
-          <span className="tooltip">Login info</span>
+          <span className="tooltip">Player info</span>
           </Link>
           
         </div>
