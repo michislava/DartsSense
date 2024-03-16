@@ -39,7 +39,8 @@ DartsSense ще автоматизира аспекти от играта на �
 - **NodeJS**
 
 ## Блокови схеми
-
+![image](images/HWBLSCH.jpg)
+![image](images/image.png)
 ## Принципна електрическа схема
 ![image](images/electricalScheme.png)
 
