@@ -16,13 +16,13 @@
   .leaderboard th {
     padding: 8px;
     background-color: #FFD700;
-    border: 1px solid #ddd;
+    border: 1px solid #000000;
     color: #000000;
   }
   
   /* Style the table cells */
   .leaderboard td {
-    border: 1px solid #ddd;
+    border: 1px solid #000000;
   }
   
   /* Style alternate rows */

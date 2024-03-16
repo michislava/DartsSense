@@ -53,6 +53,7 @@ function App() {
                 <li><Link to="/help">Help</Link></li>
                 <li><Link to="/rules">Rules</Link></li>
                 <li><Link to="/registration">Registration</Link></li>
+                <li><Link to="/login">Login</Link></li>
             </Navbar2>
             <Routes>
             <Route path="/" element={<Main />} />

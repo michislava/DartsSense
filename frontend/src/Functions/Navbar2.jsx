@@ -20,6 +20,12 @@ function Navbar2() {
         <li className="nav-item">
           <Link to="/rules" className="nav-link">Rules</Link>
         </li>
+        <li className="nav-item">
+          <Link to="/registration" className="nav-link">Register</Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/login" className="nav-link">Login</Link>
+        </li>
         <div className="navbar-logo-icon">
           <Link to="/player" className="nav-link">
           Player
