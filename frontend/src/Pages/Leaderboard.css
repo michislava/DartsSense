@@ -1,0 +1,36 @@
+
+/* Style the container */
+.leaderboard {
+    font-family: Arial, sans-serif;
+    color: #FFD700;
+    font-size: 25px;
+  }
+  
+  /* Style the table */
+  .leaderboard table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Style the table headers */
+  .leaderboard th {
+    padding: 8px;
+    background-color: #FFD700;
+    border: 1px solid #ddd;
+    color: #000000;
+  }
+  
+  /* Style the table cells */
+  .leaderboard td {
+    border: 1px solid #ddd;
+  }
+  
+  /* Style alternate rows */
+  .leaderboard tbody tr:nth-child(even) {
+    background-color: #FFD700;
+    color: #000000;
+  }
+
+  .leaderboard tbody tr:nth-child(odd) {
+    color: #FFD700;
+  }

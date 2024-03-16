@@ -2,14 +2,6 @@
     color: #FFD700;
 }
 
-.scores {
-    color: #FFD700;
-}
-
-.stats {
-    color: #FFD700;
-}
-
 .help {
     color: #FFD700;
 }
@@ -24,5 +16,11 @@
 
 .player {
     color: #FFD700;
+    font-size: 20px;
+}
+
+.rules {
+    color: #FFD700;
+    font-size: 30px;
 }
 

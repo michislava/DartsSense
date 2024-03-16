@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "postinstall":"npx prisma generate",
+  "postinstall": "npx prisma generate",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
