@@ -24,7 +24,18 @@ model User {
   GameResult        GameResult[]
 
 }
+model Player {
+  id        Int      @id @default(autoincrement())
+  name      String
+  throws    Throw[]  @relation("PlayerThrows")
+}
 
+model Throw {
+  id        Int      @id @default(autoincrement())
+  score     Int
+  player    Player   @relation("PlayerThrows", fields: [playerId], references: [id])
+  playerId  Int
+}
 // games model
 model Game {
   game_id        Int      @id @default(autoincrement())

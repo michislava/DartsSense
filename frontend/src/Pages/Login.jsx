@@ -16,10 +16,8 @@ function LoginForm() {
       });
       
       console.log('Login successful:', response.data);
-      // Handle successful login (e.g., redirect to dashboard)
     } catch (error) {
       console.error('Error logging in:', error);
-      // Handle login error (e.g., display error message)
     }
   };
 

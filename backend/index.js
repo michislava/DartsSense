@@ -54,73 +54,68 @@ app.get('/users', async (req, res) => {
   }
 });
 
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  if (username === 'example' && password === 'password') {
-    res.status(200).send('Login successful');
-  } else {
-    res.status(401).send('Unauthorized');
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        username: username,
+      },
+    });
+
+    if (!user) {
+      return res.status(401).send('Unauthorized');
+    }
+
+    const passwordMatch = user.password === password;
+
+    if (passwordMatch) {
+      res.status(200).send('Login successful');
+    } else {
+      res.status(401).send('Unauthorized');
+    }
+  } catch (error) {
+    console.error('Error logging in:', error);
+    res.status(500).send('Internal server error');
   }
 });
 
 app.post('/esp-data', async (req, res) => {
   try {
-      const { player, points } = req.body;
-      if (player === undefined || points === undefined) {
-        return res.status(400).send('Player and points are required');
+      const { points, throws } = req.body;
+      if (!points || !throws || throws.length !== 3) {
+          return res.status(400).send('Points and throws (3 throws) are required');
       }
-      console.log(`Player: ${player}, Points: ${points}`);
-      res.status(200).send('Data received and processed successfully');
-    } catch (error) { 
-      console.error('Error parsing JSON:', error);
-      res.status(400).send('Invalid JSON data');
-    }
-    createFinishedGame();
+
+      const playerNames = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
+
+      const createdPlayers = [];
+      for (let i = 0; i < 4; i++) {
+          const player = await prisma.player.create({
+              data: {
+                  name: playerNames[i],
+                  throws: {
+                      create: throws.map(score => ({ score })),
+                  },
+              },
+              include: {
+                  throws: true,
+              },
+          });
+          createdPlayers.push(player);
+      }
+
+      console.log('Players and their throws created:', createdPlayers);
+
+      res.status(200).send('Players and their throws added to the database successfully');
+  } catch (error) {
+      // Log and send an error response if an error occurs
+      console.error('Error adding players and throws to the database:', error);
+      res.status(500).send('Internal server error');
+  }
 });
 
-async function createFinishedGame() {
-  console.log("vleznahme");
-  try {
-      const newGame = await prisma.game.create({
-      data: {
-        game_type: 'Finished',
-      },
-    });
-
-    console.log("tvato stana");
-
-    // Define the player scores and the threshold for winning
-    const playerScores = [0, 0, 0, 0];
-    const winningScore = 301;
-
-    for (let i = 0; i < 3; i++) {
-      for (let player = 0; player < 4; player++) {
-        // Generate a random score for each throw between 3 and 50
-        const throwScore = Math.floor(Math.random() * (50 - 3 + 1)) + 3; // Random score between 3 and 50
-        playerScores[player] += throwScore;
-
-        // Create game result entry for each throw
-        await prisma.gameResult.create({
-          data: {
-            game_id: newGame.game_id,
-            user_id: player + 1, // Assuming user IDs start from 1
-            score: throwScore,
-          },
-        });
-        console.log("ima li ciganiiiiiiiiiiiii");
-        // Check if any player has reached the winning score
-        if (playerScores[player] >= winningScore) {
-          console.log(`Player ${player + 1} wins!`);
-          return;
-        }
-      }
-    }
-
-    console.log('No winner yet!');
-  } catch (error) {
-    console.error('Error creating finished game:', error);
-  }
-}
 
 
 // Start the server
