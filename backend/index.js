@@ -82,39 +82,38 @@ app.post('/login', async (req, res) => {
 });
 
 app.post('/esp-data', async (req, res) => {
+  console.log(req.body);
   try {
-      const { points, throws } = req.body;
-      if (!points || !throws || throws.length !== 3) {
-          return res.status(400).send('Points and throws (3 throws) are required');
-      }
+    const { points, throws } = req.body;
+    if (!points || !throws) {
+      return res.status(400).send('Points and throws (3 throws) are required');
+    }
 
-      const playerNames = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
+    const playerNames = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
 
-      const createdPlayers = [];
-      for (let i = 0; i < 4; i++) {
-          const player = await prisma.player.create({
-              data: {
-                  name: playerNames[i],
-                  throws: {
-                      create: throws.map(score => ({ score })),
-                  },
-              },
-              include: {
-                  throws: true,
-              },
-          });
-          createdPlayers.push(player);
-      }
+    const createdPlayers = [];
+    for (let i = 0; i < 4; i++) {
+      const playerName = playerNames[i];
+      const playerScores = throws[i].slice(0, 3); // Take first 3 throws
+      const player = await prisma.player.create({
+        data: {
+          name: playerName,
+          scores: playerScores,
+        },
+      });
+      createdPlayers.push(player);
+    }
 
-      console.log('Players and their throws created:', createdPlayers);
+    console.log('Players with throws added to the database:', createdPlayers);
 
-      res.status(200).send('Players and their throws added to the database successfully');
+    res.status(200).send('Players with throws added to the database successfully');
   } catch (error) {
-      // Log and send an error response if an error occurs
-      console.error('Error adding players and throws to the database:', error);
-      res.status(500).send('Internal server error');
+    console.error('Error adding players with throws to the database:', error);
+    res.status(500).send('Internal server error');
   }
 });
+
+
 
 
 
