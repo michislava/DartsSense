@@ -7,7 +7,6 @@ function Navbar2() {
   return (
     <nav className="navbar">
       <div className="navbar-logo-main">
-      <img src={logo} alt="Icon" className="navbar-logo-mainicon"/>
         <Link to="/" className="navbar-logo-link">
           DartsSense
         </Link>
@@ -26,8 +25,8 @@ function Navbar2() {
           <Link to="/rules" className="nav-link">Rules</Link>
         </li>
         <div className="navbar-logo-icon">
-          <Link to="/player" className="navbar-logo-link">
-            <img src={logo} alt="Info Icon" className="navbar-logo-iconlink"/>
+          <Link to="/player" className="nav-link">
+          Player
           <span className="tooltip">Player info</span>
           </Link>
           

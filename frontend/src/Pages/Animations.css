@@ -45,13 +45,13 @@
         transform: rotate(-340deg) translateY(0);
       }
       70% {
-        bottom: 40%;
-        right: 70%;
+        bottom: 39.8%;
+        right: 77.3%;
         transform: rotate(-345deg) translateY(0);
       }
       100% {
-        bottom: 40%; /* Stay at the same position */
-        right: 70%;
+        bottom: 39.8%; /* Stay at the same position */
+        right: 77.3%;
         transform: rotate(-345deg) translateY(0);
       }
   }
@@ -94,23 +94,23 @@
       }
       55% {
         bottom: 30%;
-        right: 55%;
+        right: 60%;
         transform: rotate(-338deg) translateY(0);
       }
       60% {
         bottom: 30%;
-        right: 60%;
+        right: 70%;
         transform: rotate(-340deg) translateY(0);
       }
       70% {
         bottom: 30%;
-        right: 70%;
-        transform: rotate(-345deg) translateY(0);
+        right: 72%;
+        transform: rotate(-340deg) translateY(0);
       }
       100% {
         bottom: 30%; /* Stay at the same position */
-        right: 70%;
-        transform: rotate(-345deg) translateY(0);
+        right: 72%;
+        transform: rotate(-340deg) translateY(0);
       }
   }
 
@@ -142,34 +142,40 @@
       }
       45% {
         bottom: 50%;
-        right: 45%;
+        right: 50%;
         transform: rotate(-333deg) translateY(0);
       }
       50% {
         bottom: 50%;
-        right: 50%;
+        right: 60%;
         transform: rotate(-335deg) translateY(0);
       }
       55% {
         bottom: 50%;
-        right: 55%;
+        right: 70%;
         transform: rotate(-338deg) translateY(0);
       }
       60% {
         bottom: 50%;
-        right: 60%;
+        right: 75%;
         transform: rotate(-340deg) translateY(0);
       }
       70% {
         bottom: 50%;
-        right: 70%;
+        right: 75%;
         transform: rotate(-345deg) translateY(0);
       }
       100% {
         bottom: 50%; /* Stay at the same position */
-        right: 70%;
+        right: 75%;
         transform: rotate(-345deg) translateY(0);
       }
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    90% { opacity: 0; }
+    100% { opacity: 1; }
   }
   
   .flying-dart1 {
@@ -203,9 +209,20 @@
   }
 
   .Board {
-    width: 490px; /* Adjust width and height as needed */
-    height: 490px;
+    width: 500px; /* Adjust width and height as needed */
+    height: 500px;
     position: absolute;
     z-index: -1;
+    top: 330px; /* Adjust top position as needed */
+    left: 100px;
   }
+
+  .fadeText {
+    font-size: 200px;
+    color: #FFD700;
+    animation: fadeIn 2s;
+    position: absolute;
+    left: 690px; /* Move the h1 50 pixels to the right */
+    top: 333px; /* Move the h1 20 pixels down */
+}
 

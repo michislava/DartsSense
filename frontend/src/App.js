@@ -16,7 +16,7 @@ export const MyContext = createContext();
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  if (isLoggedIn === false) { 
+  if (isLoggedIn === true) { 
     return (
       <Router>  
         <div className="App">
@@ -43,7 +43,7 @@ function App() {
     );
     }
 
-    if (isLoggedIn === true) { 
+    if (isLoggedIn === false) { 
       return (
         <Router>
           <div className="App">
