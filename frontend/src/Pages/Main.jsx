@@ -11,6 +11,9 @@ function Main() {
     <div className="Board">
       <img src={board} alt="Sample" />
     </div>
+    <div className="fadeText">
+      <h1>DartsSense</h1>
+    </div>
   </div>
   }
   
