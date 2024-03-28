@@ -1,5 +1,8 @@
 #include "esp_camera.h"
 #include <WiFi.h>
+#include <ESPAsyncWebServer.h> // Include the ESPAsyncWebServer library
+
+AsyncWebServer server(80);
 
 //
 // WARNING!!! PSRAM IC required for UXGA resolution and high JPEG quality
@@ -143,6 +146,7 @@ void setup() {
   Serial.println("WiFi connected");
 
   startCameraServer();
+  server.on
 
   Serial.print("Camera Ready! Use 'http://");
   Serial.print(WiFi.localIP());
@@ -150,6 +154,24 @@ void setup() {
 }
 
 void loop() {
-  // Do nothing. Everything is done in another task by the web server
-  delay(10000);
+  server.handleClient(); // Handle client requests
+  delay(100);
+}
+
+void startCameraServer() {
+  server.on("/getFrame", HTTP_GET, []() {
+    Serial.println("Received request for /getFrame"); // Define the route /getFrame for GET requests
+    camera_fb_t * fb = NULL;
+    fb = esp_camera_fb_get(); // Get the camera frame buffer
+
+    if (!fb) {
+      server.send(500, "text/plain", "Camera capture failed"); // Send an error response if capture failed
+      return;
+    }
+
+    server.setContentLength(fb->len); // Set content length header
+    server.send(200, "image/jpeg", fb->buf, fb->len); // Send the image data
+    esp_camera_fb_return(fb); // Return the frame buffer
+  });
+  server.begin(); // Start the server
 }
