@@ -7,11 +7,10 @@ url = 'http://192.168.1.20/getFrames.jpg'
 
 # Define HSV color ranges for dartboard segments
 dartboard_colors = {
-    'black': {'lower': np.array([0, 0, 0]), 'upper': np.array([180, 255, 30]), 'color': (0, 0, 0)},
-    'red': {'lower': np.array([0, 70, 50]), 'upper': np.array([10, 255, 255]), 'color': (0, 0, 255)},
-    'white': {'lower': np.array([0, 0, 180]), 'upper': np.array([180, 25, 255]), 'color': (255, 255, 255)},
-    'green': {'lower': np.array([40, 70, 50]), 'upper': np.array([80, 255, 255]), 'color': (0, 255, 0)},
-    'grey': {'lower': np.array([0, 0, 100]), 'upper': np.array([180, 30, 150]), 'color': (128, 128, 128)}
+    'black': {'lower': np.array([0, 0, 0]), 'upper': np.array([180, 255, 30])},
+    'red': {'lower': np.array([0, 70, 50]), 'upper': np.array([10, 255, 255])},
+    'white': {'lower': np.array([0, 0, 180]), 'upper': np.array([180, 25, 255])},
+    'green': {'lower': np.array([40, 70, 50]), 'upper': np.array([80, 255, 255])}
 }
 
 # Function to preprocess frame
@@ -37,10 +36,9 @@ def main():
 
         # Detect individual colors
         color_masks = {}
-        for color, color_info in dartboard_colors.items():
-            mask = detect_color(hsv, color_info)
-            # Apply bitwise AND operation to show only detected pixels as the color
-            color_masks[color] = cv2.bitwise_and(frame, frame, mask=mask)
+        for color, color_range in dartboard_colors.items():
+            mask = detect_color(hsv, color_range)
+            color_masks[color] = mask
 
         # Display each color mask separately
         for color, mask in color_masks.items():
