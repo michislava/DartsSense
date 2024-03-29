@@ -7,9 +7,7 @@ WebServer server(80);
 const char* ssid = "VIVACOM_FiberNet_C34F2";
 const char* password = "Krasi6910";
 
-static auto loRes = esp32cam::Resolution::find(320, 240);
-static auto midRes = esp32cam::Resolution::find(350, 530);
-static auto hiRes = esp32cam::Resolution::find(800, 600);
+static auto res = esp32cam::Resolution::find(400, 300);
 void serveJpg()
 {
   auto frame = esp32cam::capture();
@@ -27,26 +25,10 @@ void serveJpg()
   frame->writeTo(client);
 }
  
-void handleJpgLo()
+void handleFrames()
 {
-  if (!esp32cam::Camera.changeResolution(loRes)) {
-    Serial.println("SET-LO-RES FAIL");
-  }
-  serveJpg();
-}
- 
-void handleJpgHi()
-{
-  if (!esp32cam::Camera.changeResolution(hiRes)) {
-    Serial.println("SET-HI-RES FAIL");
-  }
-  serveJpg();
-}
- 
-void handleJpgMid()
-{
-  if (!esp32cam::Camera.changeResolution(midRes)) {
-    Serial.println("SET-MID-RES FAIL");
+  if (!esp32cam::Camera.changeResolution(res)) {
+    Serial.println("Set to resolution failed.");
   }
   serveJpg();
 }
@@ -59,7 +41,7 @@ void  setup(){
     using namespace esp32cam;
     Config cfg;
     cfg.setPins(pins::AiThinker);
-    cfg.setResolution(hiRes);
+    cfg.setResolution(res);
     cfg.setBufferCount(2);
     cfg.setJpeg(80);
  
@@ -74,13 +56,8 @@ void  setup(){
   }
   Serial.print("http://");
   Serial.println(WiFi.localIP());
-  Serial.println("  /cam-lo.jpg");
-  Serial.println("  /cam-hi.jpg");
-  Serial.println("  /cam-mid.jpg");
- 
-  server.on("/cam-lo.jpg", handleJpgLo);
-  server.on("/cam-hi.jpg", handleJpgHi);
-  server.on("/cam-mid.jpg", handleJpgMid);
+  Serial.println("  /getFrames.jpg");
+  server.on("/getFrames.jpg", handleFrames);
  
   server.begin();
 }
