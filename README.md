@@ -44,7 +44,7 @@ DartsSense цели да автоматизира аспекти от играт
 
 ## А4 само хартия
 
-- [Викторио Миланов (12Г)](https://github.com/milanovviktorio)
 - [Емилия Чукалева (12Г)](https://github.com/michislava)
+- [Викторио Миланов (12Г)](https://github.com/milanovviktorio)
 - [Любомир Станев (12Г)](https://github.com/liubo817)
 - [Николай Йорданов (12Г)](https://github.com/i-kratko)
