@@ -4,21 +4,42 @@
 generator client {
   provider = "prisma-client-js"
 }
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-model Player {
-  id           Int     @id @default(autoincrement())
-  name         String
-  playerScores Int
-  Throw        Throw[]
+// Define the User model
+model User {
+  userId     Int     @id @default(autoincrement())
+  username   String  @unique
+  email      String  @unique
+  password   String
+  skillLevel String
+  games      Game[]  @relation("Player1") // Add opposite relation field
+  games2     Game[]  @relation("Player2") // Add opposite relation field
+  userScores Score[] @relation("UserScores") // Add a specific relation name
 }
 
-model Throw {
-  id       Int    @id @default(autoincrement())
-  score    Int
+// Define the Game model
+model Game {
+  gameId    Int     @id @default(autoincrement())
+  name      String
+  player1   User    @relation("Player1", fields: [player1Id], references: [userId])
+  player1Id Int
+  player2   User?   @relation("Player2", fields: [player2Id], references: [userId])
+  player2Id Int?
+  scores    Score[] // One-to-many relation: one game can have many scores
+}
+
+// Define the Score model
+model Score {
+  scoreId  Int      @id @default(autoincrement())
+  points   Int
+  datetime DateTime @default(now())
+  player   User     @relation("UserScores", fields: [playerId], references: [userId])
   playerId Int
-  player   Player @relation(fields: [playerId], references: [id])
+  game     Game     @relation(fields: [gameId], references: [gameId])
+  gameId   Int
 }

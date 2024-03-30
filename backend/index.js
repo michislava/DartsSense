@@ -10,7 +10,7 @@ const prisma = new PrismaClient({
 const app = express();
 const port = 9000;
 
-// Middleware to enable CORS
+// Middleware o enable CORS
 app.use(cors({
   origin: '*'
 }));
@@ -19,19 +19,21 @@ app.use(cors({
 app.use(express.json());
 
 app.post('/register', async (req, res) => {
-  const { username, password, email, skill_level } = req.body;
+  const { firstname, lastname, username, email, pass, skill } = req.body;
 
-  if (!username || !password || !email || !skill_level) {
+  if (!firstname || !lastname || !username || !email || !pass || !skill) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
   try {
     const newUser = await prisma.user.create({
       data: {
+        firstName: firstname,
+        lastName: lastname,
         username,
-        password,
         email,
-        skill_level,
+        password: pass,
+        skillLevel: skill,
       },
     });
 
@@ -43,6 +45,7 @@ app.post('/register', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 app.get('/users', async (req, res) => {
   try {
@@ -81,6 +84,52 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.post('/create-game', async (req, res) => {
+  try {
+    const { name, player1Username, player2Username } = req.body;
+
+    // Ensure all required fields are provided
+    if (!name || !player1Username || !player2Username) {
+      return res.status(400).json({ error: 'Name and usernames for both players are required' });
+    }
+
+    // Find user IDs for both players
+    const player1 = await prisma.user.findUnique({
+      where: {
+        username: player1Username,
+      },
+    });
+
+    const player2 = await prisma.user.findUnique({
+      where: {
+        username: player2Username,
+      },
+    });
+
+    // Ensure both players exist
+    if (!player1 || !player2) {
+      return res.status(404).json({ error: 'One or both of the players do not exist' });
+    }
+
+    // Create a new game with player IDs and the game name
+    const newGame = await prisma.game.create({
+      data: {
+        name,
+        player1Id: player1.userId,
+        player2Id: player2.userId,
+      },
+    });
+
+    console.log('Game created successfully:', newGame);
+
+    res.status(200).json({ message: 'Game created successfully', game: newGame });
+  } catch (error) {
+    console.error('Error creating game:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 app.post('/esp-data', async (req, res) => {
   console.log(req.body);
   try {
@@ -103,7 +152,6 @@ app.post('/esp-data', async (req, res) => {
       });
       createdPlayers.push(player);
     }
-
     console.log('Players with throws added to the database:', createdPlayers);
 
     res.status(200).send('Players with throws added to the database successfully');
