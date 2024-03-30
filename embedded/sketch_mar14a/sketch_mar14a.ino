@@ -4,13 +4,13 @@
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 
-const char* ssid = "InnovationForumGuests";
-const char* password = "";
+const char* ssid = "Tenda";
+const char* password = "0898760481";
 const char* serverAddress = "http://35.198.130.133:9000/esp-data";
 
 //i2c pins used to control lcd display
-#define I2C_SDA 21
-#define I2C_SCL 20
+#define I2C_SDA 5
+#define I2C_SCL 4
 
 int lcdColumns = 16;
 int lcdRows = 2;
@@ -18,7 +18,9 @@ int lcdRows = 2;
 LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);  
 
 //ir object bound to gpio19
-IRrecv IR(19);
+IRrecv IR(7);
+
+int relay = 6;
 
 //IR CODES TABLE
 #define IR0 0xE916FF00
@@ -88,13 +90,15 @@ void setup() {
   Serial.println(WiFi.localIP());
 
   pinMode(zone1, INPUT);
-  pinMode(zone2, INPUT);
+  pinMode(zone2, INPUT_PULLDOWN);
   pinMode(zone3, INPUT);
   pinMode(zone4, INPUT);
   pinMode(zone5, INPUT);
   pinMode(zone6, INPUT);
   pinMode(zone7, INPUT);
   pinMode(zone8, INPUT);
+
+  pinMode(relay, OUTPUT);
 
   sendData(1, 301);
 
@@ -135,6 +139,10 @@ void loop() {
         Serial.println("Player4 Selected");
         playerTurn = 4;
       break;
+      case IR5:
+        Serial.println("Modoration Agdivation");
+        digitalWrite(relay, HIGH);
+      break;
     }
     delay(1500);
     IR.resume();
@@ -142,59 +150,59 @@ void loop() {
 
   if (analogRead(zone1) >= 2000)
   {
-    Serial.println(analogRead(zone1));
+    //Serial.println(analogRead(zone1));
     hit = 1;
     pointsToEarn = ZONE1_PTS;
-    Serial.println("HIT! ZONE1");
+    //Serial.println("HIT! ZONE1");
   }
   if (analogRead(zone2) >= 2000)
   {
-    Serial.println(analogRead(zone2));
+    //Serial.println(analogRead(zone2));
     hit = 1;
     pointsToEarn = ZONE2_PTS;
-    Serial.println("HIT! ZONE2");
+    //Serial.println("HIT! ZONE2");
   }
   if (analogRead(zone3) >= 2000)
   {
-    Serial.println(analogRead(zone3));
+    //Serial.println(analogRead(zone3));
     hit = 1;
     pointsToEarn = ZONE3_PTS;
-    Serial.println("HIT! ZONE3");
+    ///Serial.println("HIT! ZONE3");
   }
   if (analogRead(zone4) >= 2000)
   {
-    Serial.println(analogRead(zone4));
+    //Serial.println(analogRead(zone4));
     hit = 1;
     pointsToEarn = ZONE4_PTS;
-    Serial.println("HIT! ZONE4");
+    //Serial.println("HIT! ZONE4");
   }
   if (analogRead(zone5) >= 2000)
   {
-    Serial.println(analogRead(zone5));
+    //Serial.println(analogRead(zone5));
     hit = 1;
     pointsToEarn = ZONE5_PTS;
-    Serial.println("HIT! ZONE5");
+    //Serial.println("HIT! ZONE5");
   }
   if (analogRead(zone6) >= 2000)
   {
-    Serial.println(analogRead(zone6));
+    //Serial.println(analogRead(zone6));
     hit = 1;
     pointsToEarn = ZONE6_PTS;
-    Serial.println("HIT! ZONE6");
+    //Serial.println("HIT! ZONE6");
   }
   if (analogRead(zone7) >= 2000)
   {
-    Serial.println(analogRead(zone7));
+    //Serial.println(analogRead(zone7));
     hit = 1;
     pointsToEarn = ZONE7_PTS;
-    Serial.println("HIT! ZONE7");
+    //Serial.println("HIT! ZONE7");
   }
   if (analogRead(zone8) >= 2000)
   {
-    Serial.println(analogRead(zone8));
+    //Serial.println(analogRead(zone8));
     hit = 1;
     pointsToEarn = ZONE8_PTS;
-    Serial.println("HIT! ZONE8");
+    //Serial.println("HIT! ZONE8");
   }
 
   if (hit == 1)
@@ -227,6 +235,7 @@ void loop() {
     
     hit = 0;
     //player points display
+    /*
     Serial.println("P1 Points:");
     Serial.println(p1pts);
     Serial.println("P2 Points:");
@@ -236,7 +245,7 @@ void loop() {
     Serial.println("P4 Points:");
     Serial.println(p4pts);
     delay(1000);
-
+    */
     
   }
 
@@ -284,7 +293,7 @@ void sendData(int player, int points) {
     http.begin(serverAddress); // Your Flask server endpoint
     http.addHeader("Content-Type", "application/json"); // Specify content type
     
-    String jsonData = "{\"Player\" : " + String(player) + ", \"Points\" : " + String(points) + "}"; // Create JSON payload
+    String jsonData = "{\"player\" : " + String(player) + ", \"points\" : " + String(points) + "}"; // Create JSON payload
     Serial.println(jsonData);
     int httpResponseCode = http.POST(jsonData); // Send the P;OST request
     
