@@ -9,20 +9,25 @@ url = 'http://192.168.1.20/getFrames.jpg'
 dartboard_colors = {
     'black': {'lower': np.array([0, 0, 0]), 'upper': np.array([180, 255, 30]), 'color': (0, 0, 0)},
     'red': {'lower': np.array([0, 70, 50]), 'upper': np.array([10, 255, 255]), 'color': (0, 0, 255)},
-    'white': {'lower': np.array([0, 0, 180]), 'upper': np.array([180, 25, 255]), 'color': (255, 255, 255)},
+    'white': {'lower': np.array([0, 0, 100]), 'upper': np.array([180, 50, 255]), 'color': (255, 255, 255)},
     'green': {'lower': np.array([40, 70, 50]), 'upper': np.array([80, 255, 255]), 'color': (0, 255, 0)},
-    'grey': {'lower': np.array([0, 0, 100]), 'upper': np.array([180, 30, 150]), 'color': (128, 128, 128)}
+    #'grey': {'lower': np.array([0, 0, 30]), 'upper': np.array([180, 30, 100]), 'color': (128, 128, 128)}
 }
 
 # Function to preprocess frame
 def preprocess_frame(frame):
+    # Apply Gaussian blur
+    blur = cv2.GaussianBlur(frame, (7, 7), cv2.BORDER_DEFAULT)
     # Convert frame to HSV color space
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
     return hsv
 
 # Function to detect individual colors
 def detect_color(frame, color):
     mask = cv2.inRange(frame, color['lower'], color['upper'])
+    # Apply morphological operations to refine the mask
+    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, np.ones((5,5), np.uint8))
+    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((5,5), np.uint8))
     return mask
 
 def main():
