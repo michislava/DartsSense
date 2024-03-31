@@ -9,20 +9,28 @@ def detect_darts(frame):
     # Convert the frame to HSV color space
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    # Define lower and upper bounds for green color in HSV
+    # Define lower and upper bounds for light green color in HSV
     lower_green = np.array([40, 40, 40])  # Adjust as needed
     upper_green = np.array([80, 255, 255])  # Adjust as needed
 
-    # Threshold the HSV image to get only green regions
-    mask = cv2.inRange(hsv, lower_green, upper_green)
+    # Define lower and upper bounds for red color in HSV
+    lower_red = np.array([0, 70, 50])  # Adjust as needed
+    upper_red = np.array([10, 255, 255])  # Adjust as needed
 
-    # Find contours in the green mask
+    # Threshold the HSV image to get only light green and red regions
+    mask_green = cv2.inRange(hsv, lower_green, upper_green)
+    mask_red = cv2.inRange(hsv, lower_red, upper_red)
+
+    # Combine masks for green and red
+    mask = cv2.bitwise_or(mask_green, mask_red)
+
+    # Find contours in the combined mask
     contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     # Filter contours based on area and aspect ratio
-    min_area = 750  # Adjust as neededqq
-    min_aspect_ratio = 0.5  # Adjust as needed
-    detected_rectangles = []
+    min_area = 1000  # Adjust as needed
+    min_aspect_ratio = 1.0  # Adjust as needed
+    detected_darts = []
     for contour in contours:
         # Approximate the contour to a polygon
         epsilon = 0.05 * cv2.arcLength(contour, True)
@@ -34,11 +42,11 @@ def detect_darts(frame):
             area = cv2.contourArea(contour)
             aspect_ratio = float(w) / h
             if area > min_area and aspect_ratio > min_aspect_ratio:
-                # Draw rectangle around the detected object
-                cv2.drawContours(frame, [approx], 0, (0, 255, 0), 2)
-                detected_rectangles.append(approx)
+                # Extend the rectangle to the right edge of the image
+                cv2.rectangle(frame, (x, y), (frame.shape[1]-180, y + h), (255, 0, 0), 1)
+                detected_darts.append(approx)
 
-    return frame, detected_rectangles
+    return frame, detected_darts
 
 # def meets_dart_criteria(contour, image):
 #     # Calculate the area of the contour
@@ -102,19 +110,19 @@ def detect_darts(frame):
 
 # contours, _ = cv2.findContours(canny, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 # cont_img = cv2.drawContours(frame, contours, -1, (255, 0, 0), 1)
+def main():
+    while True:
+        cap = urllib.request.urlopen(url)
+        image = np.asarray(bytearray(cap.read()), dtype="uint8")
+        frame = cv2.imdecode(image, cv2.IMREAD_COLOR)  # Replace with your camera sourceq
+        detected_frame, detected_darts = detect_darts(frame)
+        cv2.imshow("Detected Darts", detected_frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+    cv2.destroyAllWindows()
 
-
-cap = urllib.request.urlopen(url)
-image = np.asarray(bytearray(cap.read()), dtype="uint8")
-frame = cv2.imdecode(image, cv2.IMREAD_COLOR)  # Replace with your camera source
-while True:
-    detected_frame, detected_darts = detect_darts(frame)
-    cv2.imshow("Detected Darts", detected_frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-cap.release()
-cv2.destroyAllWindows()
-
+if __name__ == "__main__":
+    main()
 # # Find circles using Hough Circle Transform
 # circles = cv2.HoughCircles(canny, cv2.HOUGH_GRADIENT, dp=1, minDist=200, param1=200, param2=1, minRadius=10, maxRadius=10)
 
