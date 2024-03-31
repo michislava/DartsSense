@@ -5,25 +5,40 @@ import urllib.request
 # URL for video stream
 url = 'http://192.168.1.20/getFrames.jpg'
 
-def detect_and_draw_circles(image, threshold):
-    # Convert the image to grayscale
+def detect_darts_tips(image):
+    # Preprocess the image
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
     blur = cv2.GaussianBlur(gray, (3, 3), cv2.BORDER_DEFAULT)
 
-    # Apply Canny edge detection with a larger filter
-    edges = cv2.Canny(blur, threshold[0], threshold[1], apertureSize=3, L2gradient=False)
-    
-    # Find contours of the edges
+    # Apply Canny edge detection
+    edges = cv2.Canny(blur, 50, 150)
+
+    # Find contours
     contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    
-    # Draw circles around the sharp edges
+
+    # Filter contours based on shape, area, and aspect ratio
+    darts_tips = []
+    min_area = 100  # Minimum area for a contour to be considered a dart tip
+    min_aspect_ratio = 0.5  # Minimum aspect ratio for a contour to be considered a dart tip
+
     for contour in contours:
-        # Approximate the contour to a circle
-        (x, y), radius = cv2.minEnclosingCircle(contour)
+        area = cv2.contourArea(contour)
+        peri = cv2.arcLength(contour, True)
+        approx = cv2.approxPolyDP(contour, 0.02 * peri, True)
+
+        # Calculate the bounding box of the contour
+        x, y, w, h = cv2.boundingRect(contour)
+        aspect_ratio = float(w) / h
+
+        if area > min_area and len(approx) == 4 and aspect_ratio > min_aspect_ratio:
+            darts_tips.append(contour)
+
+    # Draw circles around the darts tips
+    for tip in darts_tips:
+        (x, y), radius = cv2.minEnclosingCircle(tip)
         center = (int(x), int(y))
         cv2.circle(image, center, int(radius), (255, 0, 0), 3)
-    
+
     return image
 
 resp = urllib.request.urlopen(url)
@@ -36,7 +51,7 @@ frame = cv2.imdecode(image, cv2.IMREAD_COLOR)
 canny = cv2.Canny(frame, 100, 100)
 
 contours, _ = cv2.findContours(canny, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-cont_img = cv2.drawContours(frame, contours, -1, (0, 255, 0), 3)
+cont_img = cv2.drawContours(frame, contours, -1, (255, 255, 0), 3)
 
 # Find circles using Hough Circle Transform
 circles = cv2.HoughCircles(canny, cv2.HOUGH_GRADIENT, dp=1, minDist=200, param1=200, param2=1, minRadius=10, maxRadius=10)
@@ -49,7 +64,7 @@ if circles is not None:
     for (x, y, r) in circles:
         cv2.circle(frame, (x, y), r, (255, 0, 255), 4)
 
-trust = detect_and_draw_circles(frame, [200, 200])
+trust = detect_darts_tips(frame)
 
 # Display the image with circles
 # cv2.imshow("frame", frame)
