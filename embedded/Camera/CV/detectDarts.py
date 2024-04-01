@@ -29,7 +29,7 @@ def detect_darts(frame):
 
     # Filter contours based on area and aspect ratio
     min_area = 1000  # Adjust as needed
-    min_aspect_ratio = 1.0  # Adjust as needed
+    min_aspect_ratio = 0.8  # Adjust as needed
     detected_darts = []
     for contour in contours:
         # Approximate the contour to a polygon
@@ -43,7 +43,7 @@ def detect_darts(frame):
             aspect_ratio = float(w) / h
             if area > min_area and aspect_ratio > min_aspect_ratio:
                 # Extend the rectangle to the right edge of the image
-                cv2.rectangle(frame, (x, y), (frame.shape[1]-180, y + h), (255, 0, 0), 1)
+                cv2.rectangle(frame, (x, y), (frame.shape[1]-200, y + h), (0, 255, 255), 3)
                 detected_darts.append(approx)
 
     return frame, detected_darts
