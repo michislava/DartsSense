@@ -13,22 +13,14 @@ def detect_darts(frame):
     lower_green = np.array([40, 40, 40])  # Adjust as needed
     upper_green = np.array([80, 255, 255])  # Adjust as needed
 
-    # Define lower and upper bounds for red color in HSV
-    lower_red = np.array([0, 70, 50])  # Adjust as needed
-    upper_red = np.array([10, 255, 255])  # Adjust as needed
-
-    # Threshold the HSV image to get only light green and red regions
+    # Threshold the HSV image to get only light green regions
     mask_green = cv2.inRange(hsv, lower_green, upper_green)
-    #mask_red = cv2.inRange(hsv, lower_red, upper_red)
 
-    # Combine masks for green and red
-    mask = cv2.bitwise_or(mask_green, 0)
-
-    # Find contours in the combined mask
-    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    # Find contours in the green mask
+    contours, _ = cv2.findContours(mask_green, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     # Filter contours based on area and aspect ratio
-    min_area = 1200  # Adjust as needed
+    min_area = 1600  # Adjust as needed
     min_aspect_ratio = 1.5  # Adjust as needed
     detected_darts = []
     for contour in contours:
@@ -42,8 +34,16 @@ def detect_darts(frame):
             area = cv2.contourArea(contour)
             aspect_ratio = float(w) / h
             if area > min_area and aspect_ratio > min_aspect_ratio:
-                # Extend the rectangle to the right edge of the image
+                # Draw rectangle around the detected dart
                 cv2.rectangle(frame, (x, y), (frame.shape[1]-190, y + h), (0, 255, 255), 3)
+
+                # Calculate the midpoint of the right side of the rectangle
+                right_midpoint_x = x + w  # X-coordinate remains the same as the right edge
+                right_midpoint_y = y + h // 2  # Y-coordinate is the midpoint of the height
+
+                # Draw a yellow circle at the midpoint
+                cv2.circle(frame, (frame.shape[1]-190, right_midpoint_y), radius=8, color=(0, 255, 255), thickness=-1)
+
                 detected_darts.append(approx)
 
     return frame, detected_darts
