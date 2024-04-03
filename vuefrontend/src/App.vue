@@ -1,18 +1,22 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import AxiosTest from "./components/AxiosTest.vue"
 </script>
 
 <template>
   <div class="navbar">
     <div >
-      <nav >
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
+
+      <nav>
+        <RouterLink class="navel" to="/">Home</RouterLink>
+        <RouterLink class="navel" to="/about">About</RouterLink>
+        <RouterLink class="navel" to="/play">Play</RouterLink>
+        <RouterLink class="navel" to="/leaderboard">Leaderboard</RouterLink>
+        <RouterLink class="navel" to="/profile">Profile</RouterLink>
+        <RouterLink class="navel" to="/logout">Log Out</RouterLink>
       </nav>
     </div>
+
   </div>
 
   <div class="router-view-container">
@@ -21,18 +25,30 @@ import HelloWorld from './components/HelloWorld.vue'
 
 </template>
 
-<style scoped>
+<style>
+body { 
+  background-color: #433c43; 
+}
 .navbar {
-  background-color: #fff;
-  color: #fff;
+  background-color: #f3d99b;
   width: 100%;
-  padding-top: 20px;
   top: 0;
   left:0;
   position: fixed;
-  align-items: center;
-  text-align: center;
-  height: 30px;
+  align-items: center;  
+  text-align: right;
+  height: 25px;
+}
+
+.navel {
+  color: #715656;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.navel:hover {
+  transition-duration: 0.5s;
+  background-color: #8e839b;
 }
 
 .navbar ul {
@@ -61,7 +77,6 @@ import HelloWorld from './components/HelloWorld.vue'
   align-items: center;
   position: fixed;
   margin: 0 0;
-  justify-content: center;
   left: 15;
 }
 </style>
