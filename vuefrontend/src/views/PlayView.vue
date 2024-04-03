@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
         <h1 class="form_title">Play</h1>
-        <Button text="Create New Game"></Button>
+        <Button @click="submit" text="Create New Game"></Button>
         <div id="2" class="wrap">
             <h1 class="form_title">Previous Games</h1>
             
@@ -15,6 +15,11 @@ export default {
     name: 'Play',
     components: {
         Button
+    },
+    methods: {
+        submit() {
+            this.$router.push('/create-game');
+        }
     }
 }
 </script>

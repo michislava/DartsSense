@@ -104,7 +104,7 @@ export default {
 }
 </script>
 
-    <style scoped>
+<style scoped>
     .wrap {
         border: 4px solid #615a73;
         background-color: rgba(255, 255, 255, 0.1);
