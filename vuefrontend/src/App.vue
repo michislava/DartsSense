@@ -1,16 +1,15 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
   <div class="navbar">
     <div >
       <nav >
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
+        <RouterLink class="navel" to="/">Home</RouterLink>
+        <RouterLink class="navel" to="/about">About</RouterLink>
+        <RouterLink class="navel" to="/register">Register</RouterLink>
+        <RouterLink class="navel" to="/login">Login</RouterLink>
       </nav>
     </div>
   </div>
@@ -21,18 +20,29 @@ import HelloWorld from './components/HelloWorld.vue'
 
 </template>
 
-<style scoped>
+<style>
+body { 
+  background-color: #433c43; 
+}
 .navbar {
-  background-color: #fff;
-  color: #fff;
+  background-color: #f3d99b;
   width: 100%;
-  padding-top: 20px;
+  margin-top: 20px;
   top: 0;
   left:0;
   position: fixed;
   align-items: center;
   text-align: center;
-  height: 30px;
+  height: fit-content;
+}
+
+.navel {
+  color: #715656;
+  font-weight: bold;
+}
+
+.navel:hover {
+  background-color: #8e839b;
 }
 
 .navbar ul {
