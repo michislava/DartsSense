@@ -25,6 +25,8 @@
 
 <script>
 import Button from './Button.vue';
+import axios from 'axios'; 
+
 export default {
     name: 'Registration',
     components: {
@@ -37,16 +39,23 @@ export default {
         }
     },
     methods: {
-        handleSubmit(e) {
+        async handleSubmit(e) {
             e.preventDefault();
-            const data = {
-                username: this.username,
-                pass: this.pass
+            try {
+                const response = await axios.post('http://backend/login', {
+                    username: this.username,
+                    password: this.pass
+                });
+                console.log('Login successful:', response.data);
+                // Redirect or perform actions after successful login
+            } catch (error) {
+                console.error('Error logging in:', error);
+                // Handle error, such as displaying an error message to the user
             }
-            console.log(data);
         }
     }
 }
+
 </script>
 
 <style scoped>

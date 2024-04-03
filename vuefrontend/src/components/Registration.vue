@@ -62,6 +62,7 @@
 <script>
 import Button from './Button.vue';
 import axios from "axios";
+
 export default {
     name: 'Registration',
     components: {
@@ -79,7 +80,7 @@ export default {
         }
     },
     methods: {
-        handleSubmit(e) {
+        async handleSubmit(e) {
             e.preventDefault();
             const data = {
                 firstname: this.firstname,
@@ -89,8 +90,15 @@ export default {
                 pass: this.pass,
                 deviceid: this.deviceid,
                 skill: this.skill
+            };
+            try {
+                const response = await axios.post('http://backend/register', data);
+                console.log('User registered successfully:', response.data);
+                // Optionally, perform actions after successful registration
+            } catch (error) {
+                console.error('Error registering user:', error);
+                // Optionally, handle registration error
             }
-            console.log(data);
         },
     }
 }
