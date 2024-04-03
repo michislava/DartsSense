@@ -19,17 +19,17 @@ def detect_darts(frame):
 
     # Threshold the HSV image to get only light green and red regions
     mask_green = cv2.inRange(hsv, lower_green, upper_green)
-    mask_red = cv2.inRange(hsv, lower_red, upper_red)
+    #mask_red = cv2.inRange(hsv, lower_red, upper_red)
 
     # Combine masks for green and red
-    mask = cv2.bitwise_or(mask_green, mask_red)
+    mask = cv2.bitwise_or(mask_green, 0)
 
     # Find contours in the combined mask
     contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     # Filter contours based on area and aspect ratio
-    min_area = 1000  # Adjust as needed
-    min_aspect_ratio = 0.8  # Adjust as needed
+    min_area = 1200  # Adjust as needed
+    min_aspect_ratio = 1.5  # Adjust as needed
     detected_darts = []
     for contour in contours:
         # Approximate the contour to a polygon
@@ -43,7 +43,7 @@ def detect_darts(frame):
             aspect_ratio = float(w) / h
             if area > min_area and aspect_ratio > min_aspect_ratio:
                 # Extend the rectangle to the right edge of the image
-                cv2.rectangle(frame, (x, y), (frame.shape[1]-200, y + h), (0, 255, 255), 3)
+                cv2.rectangle(frame, (x, y), (frame.shape[1]-190, y + h), (0, 255, 255), 3)
                 detected_darts.append(approx)
 
     return frame, detected_darts
