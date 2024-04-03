@@ -12,15 +12,19 @@ datasource db {
 
 // Define the User model
 model User {
-  userId     Int     @id @default(autoincrement())
-  username   String  @unique
-  email      String  @unique
+  userId     Int      @id @default(autoincrement())
+  firstName  String
+  lastName   String
+  username   String   @unique
+  email      String   @unique
   password   String
+  deviceId   String?  // Device ID field after the password
   skillLevel String
-  games      Game[]  @relation("Player1") // Add opposite relation field
-  games2     Game[]  @relation("Player2") // Add opposite relation field
-  userScores Score[] @relation("UserScores") // Add a specific relation name
+  games      Game[]   @relation("Player1")
+  games2     Game[]   @relation("Player2")
+  userScores Score[]  @relation("UserScores")
 }
+
 
 // Define the Game model
 model Game {

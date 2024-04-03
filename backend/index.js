@@ -19,7 +19,7 @@ app.use(cors({
 app.use(express.json());
 
 app.post('/register', async (req, res) => {
-  const { firstname, lastname, username, email, pass, skill } = req.body;
+  const { firstname, lastname, username, email, pass, deviceId, skill } = req.body;
 
   if (!firstname || !lastname || !username || !email || !pass || !skill) {
     return res.status(400).json({ message: 'All fields are required' });
@@ -33,6 +33,7 @@ app.post('/register', async (req, res) => {
         username,
         email,
         password: pass,
+        deviceId: deviceId, 
         skillLevel: skill,
       },
     });
@@ -53,6 +54,18 @@ app.get('/users', async (req, res) => {
     res.status(200).json(allUsers);
   } catch (error) {
     console.error('Error fetching users:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// DELETE route to delete all users
+app.delete('/delete', async (req, res) => {
+  try {
+    // Delete all users
+    await prisma.user.deleteMany();
+    res.status(200).json({ message: 'All users deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting users:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
