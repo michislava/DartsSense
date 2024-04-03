@@ -1,17 +1,22 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import AxiosTest from "./components/AxiosTest.vue"
 </script>
 
 <template>
   <div class="navbar">
     <div >
-      <nav >
+
+      <nav>
         <RouterLink class="navel" to="/">Home</RouterLink>
         <RouterLink class="navel" to="/about">About</RouterLink>
-        <RouterLink class="navel" to="/register">Register</RouterLink>
-        <RouterLink class="navel" to="/login">Login</RouterLink>
+        <RouterLink class="navel" to="/play">Play</RouterLink>
+        <RouterLink class="navel" to="/leaderboard">Leaderboard</RouterLink>
+        <RouterLink class="navel" to="/profile">Profile</RouterLink>
+        <RouterLink class="navel" to="/logout">Log Out</RouterLink>
       </nav>
     </div>
+
   </div>
 
   <div class="router-view-container">
@@ -27,21 +32,22 @@ body {
 .navbar {
   background-color: #f3d99b;
   width: 100%;
-  margin-top: 20px;
   top: 0;
   left:0;
   position: fixed;
-  align-items: center;
-  text-align: center;
-  height: fit-content;
+  align-items: center;  
+  text-align: right;
+  height: 25px;
 }
 
 .navel {
   color: #715656;
   font-weight: bold;
+  margin-right: 5px;
 }
 
 .navel:hover {
+  transition-duration: 0.5s;
   background-color: #8e839b;
 }
 
@@ -71,7 +77,6 @@ body {
   align-items: center;
   position: fixed;
   margin: 0 0;
-  justify-content: center;
   left: 15;
 }
 </style>
