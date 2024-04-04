@@ -21,7 +21,7 @@ app.use(express.json());
 app.post('/api/register', async (req, res) => {
   const { firstname, lastname, username, email, pass, deviceId, skill } = req.body;
 
-  if (!firstname || !lastname || !username || !email || !pass || !skill) {
+  if (!firstname || !lastname || !username || !email || !pass || !deviceId || !skill) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
