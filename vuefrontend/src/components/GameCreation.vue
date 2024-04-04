@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div>
-                <Button text="Create Game"></Button>
+                <Button @click="submit" text="Create Game"></Button>
             </div>  
         </form>
         
@@ -63,6 +63,9 @@ export default {
                 console.log("err");
             }
         },
+        submit() {
+            this.$router.push('/game');
+        }
     }
 }
 </script>
