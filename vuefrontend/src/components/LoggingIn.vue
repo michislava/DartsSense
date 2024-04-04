@@ -44,16 +44,17 @@ export default {
         async handleSubmit(e) {
             e.preventDefault();
             try {
+                const jsonString = JSON.stringify(this.$data);
+                console.log('JSON String:', jsonString);
+                const parsedData = JSON.parse(data);
+                console.log('Parsed Data:', parsedData);
                 const response = await axios.post('/api/login', {
-                    data: JSON.stringify({
-                    username: this.username,
-                    password: this.pass
-                }),
+                    parsedData,
                 headers: {
                     'Content-Type': 'application/json' // Set content type to JSON
-                }
+                }   
             });
-                console.log('Login successful:', response.data);
+                console.log('Login successful:', response.parsedData);
                 // Redirect or perform actions after successful login
             } catch (error) {
                 console.error('Error logging in:', error);
