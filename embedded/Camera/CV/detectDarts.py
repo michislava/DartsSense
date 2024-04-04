@@ -1,14 +1,16 @@
 import cv2
 import numpy as np
 import urllib.request
+import time
 
 # URL for video stream
 url = 'http://192.168.1.20/getFrames.jpg'
 
 def grabScore(detected_darts, score):
     if detected_darts: 
+        maxScore = 301
         print("Detected darts at:\n", detected_darts)
-        print("Score:", score)
+        print("ScoredNow: {}".format(score), "Score {}".format(maxScore-score))
 
 def detectDarts(frame):
     score = 15
@@ -30,7 +32,7 @@ def detectDarts(frame):
     detected_darts = []
     for contour in contours:
         # Контур -> полигон
-        epsilon = 0.05 * cv2.arcLength(contour, True)
+        epsilon = 0.03 * cv2.arcLength(contour, True)
         approx = cv2.approxPolyDP(contour, epsilon, True)
 
         # Проверка за дартс
