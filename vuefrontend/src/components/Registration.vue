@@ -92,7 +92,8 @@ export default {
                 skill: this.skill
             };
             try {
-                const response = await axios.post('http://backend/register', data);
+                const response = await axios.post('/api/register', data);
+                
                 console.log('User registered successfully:', response.data);
                 // Optionally, perform actions after successful registration
             } catch (error) {

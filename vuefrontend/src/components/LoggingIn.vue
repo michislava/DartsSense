@@ -24,8 +24,10 @@
 </template>
 
 <script>
+
 import Button from './Button.vue';
 import axios from 'axios'; 
+im
 
 export default {
     name: 'Registration',
@@ -42,10 +44,15 @@ export default {
         async handleSubmit(e) {
             e.preventDefault();
             try {
-                const response = await axios.post('http://backend/login', {
+                const response = await axios.post('/api/login', {
+                    data: JSON.stringify({
                     username: this.username,
                     password: this.pass
-                });
+                }),
+                headers: {
+                    'Content-Type': 'application/json' // Set content type to JSON
+                }
+            });
                 console.log('Login successful:', response.data);
                 // Redirect or perform actions after successful login
             } catch (error) {
