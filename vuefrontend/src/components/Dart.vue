@@ -35,15 +35,17 @@ export default {
     }
   },
   mounted() {
-    this.flyDart();
+    setTimeout(() => {
+      this.flyDart();
+    }, Math.random() * 2000);;
   },
   methods: {
     flyDart() {
       let start = this.startX;
-      const speed = 30; // Adjust as needed
+      const speed = 40;
       const end = this.endX;
       const distance = end - start;
-      const arcHeight = Math.abs(this.startY - this.endY) * 0.5; // Adjust the multiplier as needed
+      const arcHeight = Math.abs(this.startY - this.endY) * 0.5; 
 
       const interval = setInterval(() => {
         if (start <= end) {
@@ -53,9 +55,9 @@ export default {
           const height = -1 * arcHeight * Math.pow(percentage - 0.5, 2) + arcHeight; // Quadratic function for arc
           const rotation = percentage * 360; // Rotate the dart as it moves
           this.dartStyle.transform = `translate(${start}px, ${this.startY - height}px) rotate(${rotation}deg)`;
-          start -= speed; // Change increment to decrement
+          start -= speed;
         }
-      }, 50); // Adjust interval as needed
+      }, 50);
     }
   }
 }
@@ -73,23 +75,4 @@ export default {
     animation-delay: 0s;
   }
 
-  .Board {
-    width: 500px; /* Adjust width and height as needed */
-    height: 500px;
-    position: relative;
-    z-index: -1;
-    top: 140px; /* Adjust top position as needed */
-    left: -800px;
-  }
-
-  .fadeText {
-    font-size: 50px;
-    justify-content: center;
-    color: #FFD700;
-    animation: fadeIn 2s;
-    position: relative;
-    margin-top: 30px;
-    left: -50px; /* Move the h1 50 pixels to the right */
-    top: 333px; /* Move the h1 20 pixels down */
-}
 </style>

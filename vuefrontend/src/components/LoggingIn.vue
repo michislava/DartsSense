@@ -27,7 +27,7 @@
 
 import Button from './Button.vue';
 import axios from 'axios'; 
-im
+import "../assets/style.css"
 
 export default {
     name: 'Registration',
@@ -64,45 +64,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-.wrap {
-    border: 4px solid #615a73;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 50px;
-    padding-top: 20px;
-    align-items: center ;
-}
-.form_title {
-    color: #c6caed;
-    font-weight: bold;
-    align-items: left;
-    align-content: left;
-    text-align: center;
-    padding-bottom: 20px;
-}
-
-.from {
-    position: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-}
-.form_field {
-    font: optional;
-    border: 2px solid #615a73;
-    border-radius: 5px;
-    width: 100%;
-}
-
-.form_field:focus {
-    border: #4cf889;
-}
-
-.field_title {
-    color: #c6caed;
-}
-
-</style>
