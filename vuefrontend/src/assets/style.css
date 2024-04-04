@@ -1,0 +1,73 @@
+.wrap {
+    border: 4px solid #615a73;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 50px;
+    padding-top: 20px;
+    align-items: center ;
+    font-family: 'Courier New', Courier, monospace;
+}
+.form_title {
+    color: #c6caed;
+    font-weight: bold;
+    align-items: left;
+    align-content: left;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.from {
+    position: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+.form_field {
+    font: optional;
+    border: 2px solid #79708f;
+    border-radius: 5px;
+    width: 100%;
+    transition: ease;
+    transition-duration: 0.5s;
+    margin-bottom: 5px;
+}
+
+.form_field:focus {
+    border: #615a73;
+    transition: ease;
+    transition-duration: 0.5s;
+    border-radius: 20px;
+}
+
+.field_title {
+    color: #c6caed;
+}
+
+.dropdown {
+    font: optional;
+    border: 2px solid #79708f;
+    border-radius: 5px;
+    width: 100%;
+    transition: all .5s ease;
+    margin-bottom: 5px;
+}
+
+.dropdown:hover {
+    font: optional;
+}
+
+.dropdown:focus { /* Update focus styling */
+    transition: ease;
+    transition-duration: 0.5s;
+    margin-bottom: 50px;
+}
+
+.dropdown .option {
+    font-size: 13px;
+    color: #888;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    float: right;
+    line-height: 20px;
+}
