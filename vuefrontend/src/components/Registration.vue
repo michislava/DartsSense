@@ -94,16 +94,10 @@ export default {
             };
             try {
 
-                const jsonString = JSON.stringify(this.$data);
-                console.log('JSON String:', jsonString);
-                const parsedData = JSON.parse(data);
-                console.log('Parsed Data:', parsedData);
-
-                const response = await axios.post('/api/register', {
-                    parsedData,
-                headers: {
-                    'Content-Type': 'application/json' // Set content type to JSON
-                }
+                const response = await axios.post('/api/register', data, {
+                    headers: {
+                        'Content-Type': 'application/json' // Set content type to JSON
+                    }
                 });
                 
                 console.log('User registered successfully:', response.parsedData);
