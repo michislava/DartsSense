@@ -3,7 +3,7 @@ import numpy as np
 import urllib.request
 
 # URL for video stream
-url = 'http://192.168.1.20/getFrames.jpg'
+url = 'http://192.168.1.9/getFrames.jpg'
 
 # Define HSV color ranges for dartboard segments
 dartboard_colors = {
@@ -11,7 +11,6 @@ dartboard_colors = {
     'red': {'lower': np.array([0, 70, 50]), 'upper': np.array([10, 255, 255]), 'color': (0, 0, 255)},
     'white': {'lower': np.array([0, 0, 100]), 'upper': np.array([180, 50, 255]), 'color': (255, 255, 255)},
     'green': {'lower': np.array([40, 70, 50]), 'upper': np.array([80, 255, 255]), 'color': (0, 255, 0)},
-    #'grey': {'lower': np.array([0, 0, 30]), 'upper': np.array([180, 30, 100]), 'color': (128, 128, 128)}
 }
 
 # Function to preprocess frame
@@ -25,18 +24,21 @@ def preprocess_frame(frame):
 # Function to detect individual colors
 def detect_color(frame, color):
     mask = cv2.inRange(frame, color['lower'], color['upper'])
+        
     # Apply morphological operations to refine the mask
     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, np.ones((5,5), np.uint8))
     mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((5,5), np.uint8))
+    
     return mask
 
 def main():
     while True:
         # Read frame from the video stream
-        resp = urllib.request.urlopen(url)
-        image = np.asarray(bytearray(resp.read()), dtype="uint8")
-        frame = cv2.imdecode(image, cv2.IMREAD_COLOR)
-
+        # resp = urllib.request.urlopen(url)
+        # image = np.asarray(bytearray(resp.read()), dtype="uint8")
+        # frame = cv2.imdecode(image, cv2.IMREAD_COLOR)
+        frame = cv2.imread('C:\\Users\\victo\\Documents\\Lightshot\\board.png')
+        # frame = cv2.imdecode(image, cv2.IMREAD_COLOR)
         # Preprocess frame
         hsv = preprocess_frame(frame)
 

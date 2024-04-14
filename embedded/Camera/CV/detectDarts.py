@@ -4,14 +4,13 @@ import urllib.request
 import time
 
 # URL for video stream
-url = 'http://192.168.1.20/getFrames.jpg'
+url = 'http://192.168.1.9/getFrames.jpg'
 
 def grabScore(detected_darts, score):
     if detected_darts: 
         maxScore = 301
         print("Detected darts at:\n", detected_darts)
         print("ScoredNow: {}".format(score), "Score {}".format(maxScore-score))
-
 def detectDarts(frame):
     score = 15
     # HSV

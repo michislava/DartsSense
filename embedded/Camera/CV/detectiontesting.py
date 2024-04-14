@@ -3,7 +3,7 @@ import numpy as np
 import urllib.request
 
 # URL for video stream
-url = 'http://192.168.1.20/getFrames.jpg'
+url = 'http://192.168.1.9/getFrames.jpg'
 
 def detect_darts_tips(image):
     # Preprocess the image
