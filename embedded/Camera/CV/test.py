@@ -7,10 +7,9 @@ url = 'http://192.168.1.9/getFrames.jpg'
 
 # Define HSV color ranges for dartboard segments
 dartboard_colors = {
-    'black': {'lower': np.array([0, 0, 0]), 'upper': np.array([180, 255, 30]), 'color': (0, 0, 0)},
     'red': {'lower': np.array([0, 70, 50]), 'upper': np.array([10, 255, 255]), 'color': (0, 0, 255)},
     'white': {'lower': np.array([0, 0, 100]), 'upper': np.array([180, 50, 255]), 'color': (255, 255, 255)},
-    'green': {'lower': np.array([40, 70, 50]), 'upper': np.array([80, 255, 255]), 'color': (0, 255, 0)},
+    'green': {'lower': np.array([40, 70, 50]), 'upper': np.array([80, 255, 255]), 'color': (0, 255, 0)}
 }
 
 # Function to preprocess frame
@@ -37,7 +36,7 @@ def main():
         # resp = urllib.request.urlopen(url)
         # image = np.asarray(bytearray(resp.read()), dtype="uint8")
         # frame = cv2.imdecode(image, cv2.IMREAD_COLOR)
-        frame = cv2.imread('C:\\Users\\victo\\Documents\\Lightshot\\board.png')
+        frame = cv2.imread('C:/Users/victo/Documents/Lightshot/board3.png')
         # frame = cv2.imdecode(image, cv2.IMREAD_COLOR)
         # Preprocess frame
         hsv = preprocess_frame(frame)
