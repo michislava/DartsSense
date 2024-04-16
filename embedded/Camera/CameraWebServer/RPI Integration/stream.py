@@ -1,5 +1,5 @@
 import cv2
-from flask import Flask, Response
+from flask import Flask, send_file
 
 app = Flask(__name__)
 
@@ -8,21 +8,26 @@ camera = cv2.VideoCapture(0)
 camera.set(3, 640) # width
 camera.set(4, 480) # height
 
-def generate_frames():
-    while True:
-        # Capture frame-by-frame
-        success, frame = camera.read()
-        if not success:
-            break
-        else:
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+def get_frame():
+    success, frame = camera.read()
+    if success:
+        ret, buffer = cv2.imencode('.jpg', frame)
+        return buffer.tobytes()
+    else:
+        return None
 
 @app.route('/getFrames')
 def get_frames():
-    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    frame = get_frame()
+    if frame:
+        return send_file(
+            frame,
+            mimetype='image/jpeg',
+            as_attachment=False,
+            cache_timeout=0
+        )
+    else:
+        return "Failed to get frame", 500
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8000)
