@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div>
-                <Button text="Create Game"></Button>
+                <Button @click="submit" text="Create Game"></Button>
             </div>  
         </form>
         
@@ -56,13 +56,16 @@ export default {
                 user2: this.user2
             };
             try {
-                const response = await axios.post('http://backend/create-game', data);
+                const response = await axios.post('http://backend:9000/create-game', data);
                // Optionally, perform actions after successful registration
             } catch (error) {
                 // Optionally, handle registration error
                 console.log("err");
             }
         },
+        submit() {
+            this.$router.push('/game');
+        }
     }
 }
 </script>

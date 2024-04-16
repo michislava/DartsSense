@@ -18,10 +18,10 @@ app.use(cors({
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-app.post('/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
   const { firstname, lastname, username, email, pass, deviceId, skill } = req.body;
 
-  if (!firstname || !lastname || !username || !email || !pass || !skill) {
+  if (!firstname || !lastname || !username || !email || !pass || !deviceId || !skill) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
@@ -48,7 +48,7 @@ app.post('/register', async (req, res) => {
 });
 
 
-app.get('/users', async (req, res) => {
+app.get('/api/users', async (req, res) => {
   try {
     const allUsers = await prisma.user.findMany();
     res.status(200).json(allUsers);
@@ -59,7 +59,7 @@ app.get('/users', async (req, res) => {
 });
 
 // DELETE route to delete all users
-app.delete('/delete', async (req, res) => {
+app.delete('/api/delete', async (req, res) => {
   try {
     // Delete all users
     await prisma.user.deleteMany();
@@ -70,7 +70,7 @@ app.delete('/delete', async (req, res) => {
   }
 });
 
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -97,7 +97,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.post('/create-game', async (req, res) => {
+app.post('/api/create-game', async (req, res) => {
   try {
     const { name, player1Username, player2Username } = req.body;
 
@@ -143,7 +143,7 @@ app.post('/create-game', async (req, res) => {
 });
 
 
-app.post('/esp-data', async (req, res) => {
+app.post('/api/esp-data', async (req, res) => {
   console.log(req.body);
   try {
     const { points, throws } = req.body;

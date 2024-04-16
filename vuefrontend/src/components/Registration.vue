@@ -36,7 +36,7 @@
             <div>
                 <label class="field_title">Device-ID</label>
                 <div>
-                    <input class="form_field" type="text" v-model="deviceid" placeholder="Device-ID"/>
+                    <input class="form_field" type="text" v-model="deviceId" placeholder="Device-ID"/>
                 </div>
             </div>
             <div>
@@ -76,7 +76,7 @@ export default {
             username: '',
             email: '',
             pass: '',
-            deviceid: '',
+            deviceId: '',
             skill: '',
         }
     },
@@ -89,12 +89,18 @@ export default {
                 username: this.username,
                 email: this.email,
                 pass: this.pass,
-                deviceid: this.deviceid,
+                deviceId: this.deviceId,
                 skill: this.skill
             };
             try {
-                const response = await axios.post('http://backend/register', data);
-                console.log('User registered successfully:', response.data);
+
+                const response = await axios.post('/api/register', data, {
+                    headers: {
+                        'Content-Type': 'application/json' // Set content type to JSON
+                    }
+                });
+                
+                console.log('User registered successfully:', response.parsedData);
                 // Optionally, perform actions after successful registration
             } catch (error) {
                 console.error('Error registering user:', error);

@@ -24,6 +24,7 @@
 </template>
 
 <script>
+
 import Button from './Button.vue';
 import axios from 'axios'; 
 import "../assets/style.css"
@@ -43,11 +44,17 @@ export default {
         async handleSubmit(e) {
             e.preventDefault();
             try {
-                const response = await axios.post('http://backend/login', {
-                    username: this.username,
-                    password: this.pass
-                });
-                console.log('Login successful:', response.data);
+                const jsonString = JSON.stringify(this.$data);
+                console.log('JSON String:', jsonString);
+                const parsedData = JSON.parse(data);
+                console.log('Parsed Data:', parsedData);
+                const response = await axios.post('/api/login', {
+                    parsedData,
+                headers: {
+                    'Content-Type': 'application/json' // Set content type to JSON
+                }   
+            });
+                console.log('Login successful:', response.parsedData);
                 // Redirect or perform actions after successful login
             } catch (error) {
                 console.error('Error logging in:', error);
