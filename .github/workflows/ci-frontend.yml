@@ -39,8 +39,25 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            name/app
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=schedule
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha            
+    
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -70,31 +87,4 @@ jobs:
             echo "Running the Docker image"
             echo "Testing the Node.js app endpoints"
 
-  manage_tags_and_labels:
-    runs-on: ubuntu-latest
-    needs: [push_to_Docker_Hub]
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Docker Metadata Action
-        id: docker_metadata
-        uses: docker/metadata-action@v5
-        with:
-          images: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/dart-sense-frontend
-          tags: |
-            type=schedule
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha
-
-      # Optionally display the generated tags and labels
-      - name: Show generated tags and labels
-        run: |
-          echo "Generated Tags: ${{ steps.docker_metadata.outputs.tags }}"
-          echo "Generated Labels: ${{ steps.docker_metadata.outputs.labels }}"
+  
