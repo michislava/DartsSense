@@ -77,7 +77,7 @@ jobs:
           context: ./frontend/
           file: ./frontend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/dart-sense-frontend:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/dart-sense-frontend:v600
 
       - name: Run the image in a container
         uses: addnab/docker-run-action@v3
