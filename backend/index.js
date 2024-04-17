@@ -11,14 +11,13 @@ const app = express();
 const port = 2001;
 
 // Middleware o enable CORS
-app.use(cors({
-  origin: 'http://34.88.180.160:80'
-}));
+app.use(cors());
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 
 app.post('/api/register', async (req, res) => {
+  console.log("aaaa")
   const { firstname, lastname, username, email, pass, deviceId, skill } = req.body;
 
   if (!firstname || !lastname || !username || !email || !pass || !deviceId || !skill) {
