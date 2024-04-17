@@ -8,11 +8,11 @@ const prisma = new PrismaClient({
 });
 
 const app = express();
-const port = 9000;
+const port = 2001;
 
 // Middleware o enable CORS
 app.use(cors({
-  origin: '*'
+  origin: 'http://34.88.180.160:80'
 }));
 
 // Middleware to parse JSON bodies
@@ -26,6 +26,18 @@ app.post('/api/register', async (req, res) => {
   }
 
   try {
+    // Check if the username already exists
+    const existingUser = await prisma.user.findUnique({
+      where: {
+        username: username,
+      },
+    });
+
+    if (existingUser) {
+      return res.status(400).json({ error: 'Username already exists' });
+    }
+
+    // Create a new user
     const newUser = await prisma.user.create({
       data: {
         firstName: firstname,
@@ -46,6 +58,7 @@ app.post('/api/register', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 
 app.get('/api/users', async (req, res) => {
