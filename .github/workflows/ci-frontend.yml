@@ -82,7 +82,7 @@ jobs:
       - name: Run the image in a container
         uses: addnab/docker-run-action@v3
         with:
-          image: ${{ secrets.DOCKERHUB_USERNAME }}/dart-sense-frontend:latest
+          image: ${{ secrets.DOCKERHUB_USERNAME }}/dart-sense-frontend:${{ steps.meta.outputs.tags }}
           run: |
             echo "Running the Docker image"
             echo "Testing the Node.js app endpoints"
