@@ -1,8 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors'); 
-import { PrismaClient } from '../prisma/generated/clientPg'
-
+const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient({
   log: ['query', 'info', 'warn', 'error'],
