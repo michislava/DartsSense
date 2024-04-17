@@ -1,6 +1,7 @@
 FROM node:19.0.0-slim
 WORKDIR /app
 COPY ./package.json ./
+COPY prisma ./prisma/
 RUN npm i
 COPY . .
 EXPOSE 9000
