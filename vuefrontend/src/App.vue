@@ -31,7 +31,7 @@ body {
   background-color: #433c43; 
 }
 .navbar {
-  background-color: #f3d99b;
+  background-color: #81aa8e;
   width: 100%;
   top: 0;
   left:0;

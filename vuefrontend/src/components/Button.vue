@@ -15,8 +15,8 @@ export default {
 
 <style scoped>
 .btn {
-    background-color: #8e839b;
-    border: 2px solid #615a73;
+    background-color: #81aa8e;
+    border: 2px solid #628178;
     border-radius: 6px;
     width: 100%;
     font-size: 16px;
@@ -30,7 +30,7 @@ export default {
 }
 
 .btn:hover {
-    background-color: #615a73;
+    background-color: #628178;
     transition-duration: 0.5s;
     border-radius: 20px;
 }

@@ -30,13 +30,15 @@ export default {
 <style scoped>
 table {
     border-collapse:separate;
-    border:solid #615a73 4px;
+    border:solid #81aa8e 4px;
     border-radius:6px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #f3d99b;
 }
 
 td, th {
-    border-left:solid #615a73 4px;
-    border-top:solid #615a73 4px;
+    border-left:solid #81aa8e 4px;
+    border-top:solid #81aa8e 4px;
     padding: 10px;
 }
 
