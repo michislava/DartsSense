@@ -8,7 +8,7 @@ const prisma = new PrismaClient({
 });
 
 const app = express();
-const port = 2001;
+const port = 9000;
 
 // Middleware o enable CORS
 app.use(cors());
