@@ -49,7 +49,7 @@ export default {
             };
             try {
 
-                const response = await axios.post('http://127.0.0.1:9000/login', data, {
+                const response = await axios.post('http://127.0.0.1:9000/api/login', data, {
                     headers: {
                         'Content-Type': 'application/json' // Set content type to JSON
                     }
