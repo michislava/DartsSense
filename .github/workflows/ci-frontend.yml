@@ -2,10 +2,11 @@ name: ci-frontend
 
 on:
   push:
-    branches:
-    - main
-    paths:
-    - vuefrontend
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+  
     
   
 jobs:
