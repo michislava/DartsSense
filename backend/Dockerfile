@@ -6,5 +6,6 @@ RUN npm cache clean --force
 RUN npm i
 RUN npx prisma generate
 COPY . .
+COPY .env ./.env
 EXPOSE 9000
 CMD ["npm", "run", "start"]
