@@ -47,3 +47,4 @@ model Score {
   game     Game     @relation(fields: [gameId], references: [gameId])
   gameId   Int
 }
+
