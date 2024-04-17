@@ -61,15 +61,15 @@ jobs:
         - name: Build and push
           uses: docker/build-push-action@v2
           with:
-            context: ./frontend/
-            file: ./frontend/Dockerfile
+            context: ./vuefrontend/
+            file: ./vuefrontend/Dockerfile
             push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/dart-sense-frontend:v700
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/darts-frontend:v1
           
         - name: Run the image in a container
           uses: addnab/docker-run-action@v3
           with:
-            image: ${{ secrets.DOCKERHUB_USERNAME }}/dart-sense-frontend:v700
+            image: ${{ secrets.DOCKERHUB_USERNAME }}/darts-frontend:v1
             run: |
               echo "runing the docker image"
               echo "Testing the nodejs  app endpoints"
