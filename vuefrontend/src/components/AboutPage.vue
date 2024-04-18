@@ -7,6 +7,7 @@
                 opportunities for players to receive information about your game. This will improve 
                 training and make tournaments and group games easier, 
                 so you can develop better game skills and have fun.
+                A
             </p>
         </div>
     </div>

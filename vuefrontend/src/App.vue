@@ -12,8 +12,8 @@ import AxiosTest from "./components/AxiosTest.vue"
         <RouterLink class="navel" to="/about">About</RouterLink>
         <RouterLink class="navel" to="/play">Play</RouterLink>
         <RouterLink class="navel" to="/leaderboard">Leaderboard</RouterLink>
-        <RouterLink class="navel" to="/profile">Profile</RouterLink>
-        <RouterLink class="navel" to="/logout">Log Out</RouterLink>
+        <RouterLink class="navel" to="/register">Register</RouterLink>
+        <RouterLink class="navel" to="/login">Log In</RouterLink>
       </nav>
     </div>
 
@@ -31,7 +31,7 @@ body {
   background-color: #433c43; 
 }
 .navbar {
-  background-color: #f3d99b;
+  background-color: #81aa8e;
   width: 100%;
   top: 0;
   left:0;

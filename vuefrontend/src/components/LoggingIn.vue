@@ -43,22 +43,23 @@ export default {
     methods: {
         async handleSubmit(e) {
             e.preventDefault();
+            const data = {
+                username: this.username,
+                pass: this.pass,
+            };
             try {
-                const jsonString = JSON.stringify(this.$data);
-                console.log('JSON String:', jsonString);
-                const parsedData = JSON.parse(data);
-                console.log('Parsed Data:', parsedData);
-                const response = await axios.post('/api/login', {
-                    parsedData,
-                headers: {
-                    'Content-Type': 'application/json' // Set content type to JSON
-                }   
-            });
-                console.log('Login successful:', response.parsedData);
-                // Redirect or perform actions after successful login
+
+                const response = await axios.post('api/login', data, {
+                    headers: {
+                        'Content-Type': 'application/json' // Set content type to JSON
+                    }
+                });
+                
+                console.log('User logged in successfully:', response.parsedData);
+                // Optionally, perform actions after successful registration
             } catch (error) {
-                console.error('Error logging in:', error);
-                // Handle error, such as displaying an error message to the user
+                console.error('Error loggin in user:', error);
+                // Optionally, handle registration error
             }
         }
     }
