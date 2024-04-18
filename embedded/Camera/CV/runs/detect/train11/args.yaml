@@ -1,8 +1,13 @@
 task: detect
 mode: train
 model: yolov8n.yaml
+<<<<<<< HEAD
 data: C:\Users\victo\Desktop\Github REPOS\DartsSense\embedded\Camera\CV\config.yaml
 epochs: 1
+=======
+data: C:\Users\Viktorio\Desktop\DartsSense\DartsSense\embedded\Camera\CV\config.yaml
+epochs: 20
+>>>>>>> 6c397215b2d58f2df22b73d32654fe5eef96f0d1
 time: null
 patience: 100
 batch: 16
@@ -10,7 +15,11 @@ imgsz: 640
 save: true
 save_period: -1
 cache: false
+<<<<<<< HEAD
 device: cuda:0
+=======
+device: null
+>>>>>>> 6c397215b2d58f2df22b73d32654fe5eef96f0d1
 workers: 8
 project: null
 name: train11
@@ -103,4 +112,8 @@ erasing: 0.4
 crop_fraction: 1.0
 cfg: null
 tracker: botsort.yaml
+<<<<<<< HEAD
 save_dir: C:\Users\victo\Desktop\Github REPOS\DartsSense\embedded\camera\CV\runs\detect\train11
+=======
+save_dir: C:\Users\Viktorio\Desktop\DartsSense\DartsSense\embedded\Camera\CV\runs\detect\train11
+>>>>>>> 6c397215b2d58f2df22b73d32654fe5eef96f0d1
