@@ -36,7 +36,7 @@ def main():
         # resp = urllib.request.urlopen(url)
         # image = np.asarray(bytearray(resp.read()), dtype="uint8")
         # frame = cv2.imdecode(image, cv2.IMREAD_COLOR)
-        frame = cv2.imread('C:/Users/victo/Documents/Lightshot/board3.png')
+        frame = cv2.imread('C:/Users/victo/Documents/Lightshot/board2.png')
         # frame = cv2.imdecode(image, cv2.IMREAD_COLOR)
         # Preprocess frame
         hsv = preprocess_frame(frame)

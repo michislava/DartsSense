@@ -1,0 +1,13 @@
+train: C:\Users\victo\Desktop\Github REPOS\DartsSense\embedded\Camera\CV\dataset\1\train\images
+val: C:\Users\victo\Desktop\Github REPOS\DartsSense\embedded\Camera\CV\dataset\1\valid\images
+test: C:\Users\victo\Desktop\Github REPOS\DartsSense\embedded\Camera\CV\dataset\1\test\images
+
+nc: 6
+names: ["cal1", "cal2", "cal3", "cal4", "center", "tip"]
+
+roboflow:
+  workspace: salmasolly967-gmail-com
+  project: darts-eob9x
+  version: 7
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/salmasolly967-gmail-com/darts-eob9x/dataset/7
