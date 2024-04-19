@@ -64,12 +64,12 @@ jobs:
             context: ./vuefrontend/
             file: ./vuefrontend/Dockerfile
             push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/darts-frontend:v7
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/darts-frontend:v8
           
         - name: Run the image in a container
           uses: addnab/docker-run-action@v3
           with:
-            image: ${{ secrets.DOCKERHUB_USERNAME }}/darts-frontend:v7
+            image: ${{ secrets.DOCKERHUB_USERNAME }}/darts-frontend:v8
             run: |
               echo "runing the docker image"
               echo "Testing the nodejs  app endpoints"
