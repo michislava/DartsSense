@@ -22,7 +22,6 @@ export default {
     // Send POST request to backend API when component is created
     this.sendScoreToServer(payload);
   },
-    methods: {
         methods: {
     async sendScoreToServer(payload) {
       try {
@@ -35,7 +34,6 @@ export default {
         console.error('Error sending score:', error);
         // Handle error if needed
       }
-    }
     },
 }
 }
