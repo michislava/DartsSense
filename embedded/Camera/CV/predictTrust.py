@@ -5,14 +5,31 @@ import numpy as np
 import requests
 import json
 
-device = "1"
-score = 24
+# player = 1
+# score = 24
 
-# Sample score data
-score_data = {
-    "deviceID": device,
-    "score": score
-}
+# # Sample score data
+# score_data = {
+#     "player": player,
+#     "score": score
+# }
+
+# url = "https://example.com/api/scores"
+
+# # Convert score data to JSON format
+# json_data = json.dumps(score_data)
+
+# # Set the headers to specify that the content type is JSON
+# headers = {'Content-Type': 'application/json'}
+
+# # Send the POST request with the JSON data
+# response = requests.post(url, data=json_data, headers=headers)
+
+# # Check if the request was successful
+# if response.status_code == 200:
+#     print("Score data posted successfully!")
+# else:
+#     print("Failed to post score data. Status code:", response.status_code)
 
 # Load YOLO model
 model = YOLO('C:/Users/victo/Desktop/Github REPOS/DartsSense/embedded/Camera/CV/runs/detect/train19/weights/best.pt')
