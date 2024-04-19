@@ -56,6 +56,11 @@ const router = createRouter({
       path: '/game',
       name: 'game',
       component: () => import('../views/GameView.vue')
+    },
+    {
+      path: '/esp-data',
+      name: 'esp-data',
+      component: () => import('../views/DataView.vue')
     }
   ]
 })
