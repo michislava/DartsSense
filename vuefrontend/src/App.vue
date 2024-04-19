@@ -13,7 +13,7 @@ import AxiosTest from "./components/AxiosTest.vue"
         <RouterLink class="navel" to="/play">Play</RouterLink>
         <RouterLink class="navel" to="/leaderboard">Leaderboard</RouterLink>
         <RouterLink class="navel" to="/play">Play</RouterLink>
-        <RouterLink class="navel" to="/profile">Logout</RouterLink>
+        <RouterLink class="navel" to="/profile">Log Out</RouterLink>
       </nav>
     </div>
 
