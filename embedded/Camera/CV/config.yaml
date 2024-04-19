@@ -1,6 +1,10 @@
-train: C:\Users\Viktorio\Desktop\DartsSense\DartsSense\embedded\Camera\CV\dataset\1\train\images
-val: C:\Users\Viktorio\Desktop\DartsSense\DartsSense\embedded\Camera\CV\dataset\1\valid\images
-test: C:\Users\Viktorio\Desktop\DartsSense\DartsSense\embedded\Camera\CV\dataset\1\test\images
+# train: C:\Users\Viktorio\Desktop\DartsSense\DartsSense\embedded\Camera\CV\dataset\1\train\images
+# val: C:\Users\Viktorio\Desktop\DartsSense\DartsSense\embedded\Camera\CV\dataset\1\valid\images
+# test: C:\Users\Viktorio\Desktop\DartsSense\DartsSense\embedded\Camera\CV\dataset\1\test\images
+
+train: C:\Users\victo\Desktop\Github REPOS\DartsSense\embedded\Camera\CV\dataset\1\train\images
+val: C:\Users\victo\Desktop\Github REPOS\DartsSense\embedded\Camera\CV\dataset\1\valid\images
+test: C:\Users\victo\Desktop\Github REPOS\DartsSense\embedded\Camera\CV\dataset\1\test\images
 
 nc: 6
 names: ["cal1", "cal2", "cal3", "cal4", "center", "tip"]
