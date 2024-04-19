@@ -32,7 +32,7 @@ import json
 #     print("Failed to post score data. Status code:", response.status_code)
 
 # Load YOLO model
-model = YOLO('C:/Users/victo/Desktop/Github REPOS/DartsSense/embedded/Camera/CV/runs/detect/train19/weights/best.pt')
+model = YOLO('C:/Users/Viktorio/Desktop/DartsSense/DartsSense/embedded/Camera/CV/runs/detect/train19/weights/best.pt')
 
 # Define class names
 classNames = ["cal1", "cal2", "cal3", "cal4", "center", "tip"]
@@ -64,10 +64,10 @@ def detect_color(frame, color):
     return mask
 
 # Load the image
-img = cv2.imread('C:/Users/victo/Desktop/Github REPOS/DartsSense/embedded/Camera/CV/dataset/1/valid/images/-103-_jpg.rf.c8a84a7d3bb1c0ed27b185b4f1c24ca9.jpg')
-#img = cv2.imread('C:/Users/victo/Desktop/Github REPOS/DartsSense/embedded/Camera/CV/dataset/1/valid/images/-28-_jpg.rf.9c6bdfc931e5ddcf81474a6881213b07.jpg')
-#img = cv2.imread('C:/Users/victo/Desktop/Github REPOS/DartsSense/embedded/Camera/CV/dataset/1/valid/images/-58-_jpg.rf.9db29c0ad69cf71dac8ee7663bffee71.jpg')
-#img = cv2.imread('C:/Users/victo/Desktop/Github REPOS/DartsSense/embedded/Camera/CV/dataset/1/test/images/-105-_jpg.rf.cf2c5be62632628541fe43a1bf26af2f.jpg')
+#img = cv2.imread('C:/Users/Viktorio/Desktop/DartsSense/DartsSense/embedded/Camera/CV/dataset/1/valid/images/-103-_jpg.rf.c8a84a7d3bb1c0ed27b185b4f1c24ca9.jpg')
+img = cv2.imread('C:/Users/Viktorio/Desktop/DartsSense/DartsSense/embedded/Camera/CV/dataset/1/valid/images/-28-_jpg.rf.9c6bdfc931e5ddcf81474a6881213b07.jpg')
+#img = cv2.imread('C:/Users/Viktorio/Desktop/DartsSense/DartsSense/embedded/Camera/CV/dataset/1/valid/images/-58-_jpg.rf.9db29c0ad69cf71dac8ee7663bffee71.jpg')
+#img = cv2.imread('C:/Users/Viktorio/Desktop/DartsSense/DartsSense/embedded/Camera/CV/dataset/1/test/images/-105-_jpg.rf.cf2c5be62632628541fe43a1bf26af2f.jpg')
 #img = cv2.imread('C:/Users/victo/Documents/Lightshot/board8.png')
 
 # Perform object detection
